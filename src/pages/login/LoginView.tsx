@@ -11,7 +11,11 @@ import { LoginViewProps } from "./login.types";
 import WarningText from "../../components/WarningText";
 import { loginSchema } from "./login.schema";
 
-export const LoginView: React.FC<LoginViewProps> = ({ mutate, response }) => {
+export const LoginView: React.FC<LoginViewProps> = ({
+  isLoading,
+  mutate,
+  response,
+}) => {
   return (
     <Container
       sx={{
@@ -47,8 +51,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ mutate, response }) => {
           }}
         >
           {(props) => {
-            const { values, handleChange, errors, touched, isSubmitting } =
-              props;
+            const { values, handleChange, errors, touched } = props;
             return (
               <Form>
                 <Box
@@ -86,7 +89,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ mutate, response }) => {
                       variant="contained"
                       type="submit"
                       sx={{ backgroundColor: "#90caf9" }}
-                      disabled={isSubmitting}
+                      disabled={isLoading}
                     >
                       Login
                     </Button>
@@ -96,7 +99,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ mutate, response }) => {
             );
           }}
         </Formik>
-        <Box color={"red"}>{response}</Box>
+        <Box color={"red"}>{isLoading ? "Loading...." : response}</Box>
       </Paper>
     </Container>
   );

@@ -1,5 +1,6 @@
 import { UseMutateFunction } from "react-query";
 import { NavigateFunction } from "react-router-dom";
+import { Dispatch } from "redux";
 
 export type LoginCredentials = {
   email: string;
@@ -14,5 +15,6 @@ export type LoginViewProps = {
   isLoading: boolean;
   error: unknown;
   isSuccess: boolean;
+  dispatch: Dispatch;
   navigate: NavigateFunction;
 };
