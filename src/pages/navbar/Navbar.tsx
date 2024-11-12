@@ -1,5 +1,9 @@
+import { NavBarView } from "./NavbarView";
+import { useNavbar } from "./useNavbar";
+
 const Navbar = () => {
-  return <div>Here is navbar</div>;
+  const logic = useNavbar();
+  return <NavBarView {...logic} />;
 };
 
 export default Navbar;
