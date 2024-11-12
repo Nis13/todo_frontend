@@ -10,7 +10,6 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     loginSuccess(state, action) {
-      console.log(action);
       state.token = action.payload.accessToken;
       state.isAuthenticated = true;
       sessionStorage.setItem("token", action.payload.accessToken);

@@ -11,15 +11,16 @@ const useLogin = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
-  const { isLoading, isSuccess, isError, mutate, error, data } = useMutation(
+  const { isLoading, isSuccess, isError, mutate, error } = useMutation(
     useLoginApi,
     {
-      onSuccess: () => {
+      onSuccess: (data) => {
         queryClient.invalidateQueries("user");
         setresponse("User Successfully logged in!");
         dispatch(loginSuccess({ accessToken: data }));
+
         console.log("from query", data);
-        // navigate("loggedin");
+        navigate("/home");
       },
       onError: (error) => {
         if (axios.isAxiosError(error) && error.response) {
