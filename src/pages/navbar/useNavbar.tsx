@@ -10,6 +10,7 @@ export const useNavbar = () => {
 
   const pages = [
     { name: "Home", link: "/home", isVisible: isAuthenticated },
+    { name: "ToDos", link: "/todos", isVisible: isAuthenticated },
     { name: "Signup", link: "signup", isVisible: !isAuthenticated },
     { name: "login", link: "login", isVisible: !isAuthenticated },
   ];

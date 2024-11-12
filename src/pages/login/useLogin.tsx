@@ -18,8 +18,6 @@ const useLogin = () => {
         queryClient.invalidateQueries("user");
         setResponse("User Successfully logged in!");
         dispatch(loginSuccess({ accessToken: data }));
-
-        console.log("from query", data);
         navigate("/home");
       },
       onError: (error) => {
