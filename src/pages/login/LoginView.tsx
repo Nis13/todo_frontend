@@ -51,7 +51,8 @@ export const LoginView: React.FC<LoginViewProps> = ({
           }}
         >
           {(props) => {
-            const { values, handleChange, errors, touched } = props;
+            const { values, handleChange, errors, touched, isSubmitting } =
+              props;
             return (
               <Form>
                 <Box
@@ -89,7 +90,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
                       variant="contained"
                       type="submit"
                       sx={{ backgroundColor: "#90caf9" }}
-                      disabled={isLoading}
+                      disabled={isLoading || isSubmitting}
                     >
                       Login
                     </Button>

@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "react-query";
-import useLoginApi from "../../api/LoginApi/useLoginApi";
+import useLoginApi from "../../api/loginApi/useLoginApi";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { loginSuccess } from "../../store/authSlice";
 
 const useLogin = () => {
-  const [response, setresponse] = useState<string | null>(null);
+  const [response, setResponse] = useState<string | null>(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
@@ -16,7 +16,7 @@ const useLogin = () => {
     {
       onSuccess: (data) => {
         queryClient.invalidateQueries("user");
-        setresponse("User Successfully logged in!");
+        setResponse("User Successfully logged in!");
         dispatch(loginSuccess({ accessToken: data }));
 
         console.log("from query", data);
@@ -24,9 +24,9 @@ const useLogin = () => {
       },
       onError: (error) => {
         if (axios.isAxiosError(error) && error.response) {
-          setresponse(`Error:${error.response.data.message}`);
+          setResponse(`Error:${error.response.data.message}`);
         } else if (error instanceof Error)
-          setresponse(`Error: ${error.message}`);
+          setResponse(`Error: ${error.message}`);
       },
     }
   );

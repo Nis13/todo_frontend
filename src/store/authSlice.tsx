@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { getToken } from "../utils/token";
 
 const initialState = {
-  token: null,
-  isAuthenticated: false,
+  token: getToken(),
+  isAuthenticated: !!getToken(),
 };
 
 const authSlice = createSlice({

@@ -1,14 +1,20 @@
 import { Route, Routes } from "react-router-dom";
-import Login from "../pages/login/Login";
 import ProtectedRoute from "./ProtectedRoutes";
-import Home from "../pages/home/Home";
+import { allRoutes } from "./Routes";
+import Layout from "../layout/Layout";
 
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/login" element={<Login />} />
-      <Route path="/" element={<ProtectedRoute />}>
-        <Route path="/home" element={<Home />} />
+      <Route path="/" element={<Layout />}>
+        {allRoutes.publicRoutes.map((route) => (
+          <Route path={route.path} element={route.element} key={route.id} />
+        ))}
+        <Route path="/" element={<ProtectedRoute />}>
+          {allRoutes.protectedRoutes.map((route) => (
+            <Route path={route.path} element={route.element} key={route.id} />
+          ))}
+        </Route>
       </Route>
     </Routes>
   );

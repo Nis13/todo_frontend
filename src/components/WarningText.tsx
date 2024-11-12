@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 interface WarningTextProps {
-  message: string;
+  message: string | null;
   boxSX?: React.CSSProperties;
 }
 

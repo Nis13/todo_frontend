@@ -4,7 +4,7 @@ interface btnProps {
   btnText: string;
   onClick?: () => void;
   btnSX?: React.CSSProperties;
-  type?: "button" | "reset" | "submit" | undefined;
+  type: "button" | "reset" | "submit" | undefined;
   isDisabled: boolean;
 }
 
