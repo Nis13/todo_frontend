@@ -23,16 +23,16 @@ const style = {
 };
 
 const AddTodoView = ({
-  mutateAsync,
+  handleAddTask,
   openModal,
   handleOpen,
   handleClose,
 }: AddTodoViewProps) => {
   return (
-    <Container sx={{ display: "flex", justifyContent: "center" }}>
+    <Container sx={{ margin: "1rem" }}>
       <Box alignContent={"center"}>
         <Button variant="contained" onClick={handleOpen} size="large">
-          Add
+          Add Task
         </Button>
       </Box>
       <Modal
@@ -55,7 +55,7 @@ const AddTodoView = ({
               title: "",
             }}
             onSubmit={async (values) => {
-              mutateAsync(values);
+              handleAddTask(values);
             }}
           >
             {(props) => {

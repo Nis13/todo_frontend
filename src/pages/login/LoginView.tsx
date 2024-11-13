@@ -13,7 +13,7 @@ import { loginSchema } from "./login.schema";
 
 export const LoginView: React.FC<LoginViewProps> = ({
   isLoading,
-  mutate,
+  handleLogin,
   response,
 }) => {
   return (
@@ -47,7 +47,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
           }}
           validationSchema={loginSchema}
           onSubmit={async (values) => {
-            mutate(values);
+            handleLogin(values);
           }}
         >
           {(props) => {

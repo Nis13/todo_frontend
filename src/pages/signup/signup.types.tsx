@@ -1,5 +1,3 @@
-import { UseMutateAsyncFunction } from "react-query";
-
 export type SignupFields = {
   name: string;
   email: string;
@@ -11,6 +9,6 @@ export type SignupViewProps = {
   response: string | null;
   isLoading: boolean;
   isError: boolean;
-  mutateAsync: UseMutateAsyncFunction<string, Error, SignupFields, unknown>;
+  handleSignup: (value: SignupFields) => void;
   error: Error | null;
 };

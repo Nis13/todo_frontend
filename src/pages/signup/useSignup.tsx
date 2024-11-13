@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
 import useSignupApi from "../../api/signupApi/useSignupApi";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import checkErrorType from "../../utils/checkErrorType";
+import { SignupFields } from "./signup.types";
 
 export const useSignup = () => {
   const [response, setResponse] = useState<string | null>(null);
@@ -17,12 +18,13 @@ export const useSignup = () => {
         navigate("login");
       },
       onError: (error: Error) => {
-        if (axios.isAxiosError(error) && error.response) {
-          setResponse(`Error:${error.response.data.message}`);
-        } else if (error instanceof Error)
-          setResponse(`Error: ${error.message}`);
+        const returnMessage = checkErrorType(error);
+        setResponse(returnMessage);
       },
     }
   );
-  return { response, isLoading, isSuccess, isError, error, mutateAsync };
+
+  const handleSignup = (signupData: SignupFields) => mutateAsync(signupData);
+
+  return { response, isLoading, isSuccess, isError, error, handleSignup };
 };

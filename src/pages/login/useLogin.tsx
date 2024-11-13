@@ -2,37 +2,41 @@ import { useMutation, useQueryClient } from "react-query";
 import useLoginApi from "../../api/loginApi/useLoginApi";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { loginSuccess } from "../../store/authSlice";
+import checkErrorType from "../../utils/checkErrorType";
+import { LoginCredentials } from "./login.types";
 
 const useLogin = () => {
   const [response, setResponse] = useState<string | null>(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
-  const { isLoading, isSuccess, isError, mutate, error } = useMutation(
+
+  const { isLoading, isSuccess, isError, mutateAsync, error } = useMutation(
     useLoginApi,
     {
       onSuccess: (data) => {
         queryClient.invalidateQueries("user");
         setResponse("User Successfully logged in!");
         dispatch(loginSuccess({ accessToken: data }));
-        navigate("/home");
+        navigate("/todos");
       },
-      onError: (error) => {
-        if (axios.isAxiosError(error) && error.response) {
-          setResponse(`Error:${error.response.data.message}`);
-        } else if (error instanceof Error)
-          setResponse(`Error: ${error.message}`);
+      onError: (error: Error) => {
+        const returnMessage = checkErrorType(error);
+        setResponse(returnMessage);
       },
     }
   );
+
+  const handleLogin = (loginCredentials: LoginCredentials) => {
+    mutateAsync(loginCredentials);
+  };
   return {
     isLoading,
     isSuccess,
     isError,
-    mutate,
+    handleLogin,
     error,
     navigate,
     response,

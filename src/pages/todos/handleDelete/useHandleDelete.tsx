@@ -13,7 +13,9 @@ const HandleDelete = () => {
       console.log(errorMessage);
     },
   });
-  return { isLoading, mutateAsync, error };
+
+  const handleDelete = (id: string) => mutateAsync(id);
+  return { isLoading, handleDelete, error };
 };
 
 export default HandleDelete;

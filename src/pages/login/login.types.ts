@@ -1,4 +1,3 @@
-import { UseMutateFunction } from "react-query";
 import { NavigateFunction } from "react-router-dom";
 import { Dispatch } from "redux";
 
@@ -8,8 +7,7 @@ export type LoginCredentials = {
 };
 
 export type LoginViewProps = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  mutate: UseMutateFunction<any, unknown, LoginCredentials, unknown>;
+  handleLogin: (value: LoginCredentials) => void;
   response: string | null;
   isError: boolean;
   isLoading: boolean;

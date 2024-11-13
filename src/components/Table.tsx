@@ -1,6 +1,5 @@
 import { Column, usePagination, useSortBy, useTable } from "react-table";
 import {
-  Button,
   Container,
   Paper,
   Table,
@@ -10,6 +9,9 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
+import IconButton from "@mui/joy/IconButton";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 type ReactTableProps<T extends object> = {
   columns: Column<T>[];
@@ -24,7 +26,16 @@ const ReactTable = <T extends object>({
     {
       columns,
       data,
+      initialState: {
+        sortBy: [
+          {
+            id: "createdAt",
+            desc: true,
+          },
+        ],
+      },
     },
+
     useSortBy,
     usePagination
   );
@@ -43,10 +54,10 @@ const ReactTable = <T extends object>({
   return (
     <TableContainer component={Paper}>
       <Table
-        sx={{ minWidth: 650 }}
         size="small"
         aria-label="a dense table"
         {...getTableProps()}
+        sx={{ maxWidth: "70%", margin: "auto", border: 1 }}
       >
         <TableHead>
           {headerGroups.map((hg) => (
@@ -56,9 +67,13 @@ const ReactTable = <T extends object>({
             >
               {hg.headers.map((column) => (
                 <TableCell
-                  align="right"
                   {...column.getHeaderProps(column.getSortByToggleProps())}
                   key={column.getHeaderProps().key}
+                  sx={{
+                    borderBottom: 1,
+                    backgroundColor: "#1976d2",
+                    color: "white",
+                  }}
                 >
                   {column.render("Header")}
                   {column.isSorted && (
@@ -80,7 +95,6 @@ const ReactTable = <T extends object>({
               >
                 {row.cells.map((cell) => (
                   <TableCell
-                    align="right"
                     {...cell.getCellProps()}
                     key={cell.getCellProps().key}
                   >
@@ -93,16 +107,26 @@ const ReactTable = <T extends object>({
         </TableBody>
       </Table>
       <Container>
-        <Button
-          variant="contained"
+        <IconButton
+          size="sm"
+          variant="outlined"
+          color="primary"
           disabled={!canPreviousPage}
           onClick={previousPage}
+          sx={{ bgcolor: "background.surface" }}
         >
-          Prev
-        </Button>
-        <Button variant="contained" disabled={!canNextPage} onClick={nextPage}>
-          Next
-        </Button>
+          <ArrowBackIosIcon />
+        </IconButton>
+        <IconButton
+          size="sm"
+          variant="outlined"
+          color="primary"
+          disabled={!canNextPage}
+          onClick={nextPage}
+          sx={{ bgcolor: "background.surface" }}
+        >
+          <ArrowForwardIosIcon />
+        </IconButton>
       </Container>
     </TableContainer>
   );

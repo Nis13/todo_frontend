@@ -10,7 +10,7 @@ const options = [
   { value: "admin", label: "Admin" },
 ];
 
-const SignupView = ({ response, isLoading, mutateAsync }: SignupViewProps) => {
+const SignupView = ({ response, isLoading, handleSignup }: SignupViewProps) => {
   return (
     <Container
       sx={{
@@ -44,7 +44,7 @@ const SignupView = ({ response, isLoading, mutateAsync }: SignupViewProps) => {
           }}
           validationSchema={signupSchema}
           onSubmit={async (values, { resetForm }) => {
-            mutateAsync(values);
+            handleSignup(values);
             resetForm();
           }}
         >

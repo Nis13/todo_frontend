@@ -1,14 +1,10 @@
 import { useQuery } from "react-query";
 import fetchTodoApi from "../../api/fetchTodoApi/fetchTodoApi";
 import { useMemo } from "react";
-import { Button } from "@mui/material";
-import HandleDelete from "./handleDelete/useHandleDelete";
-import DeleteIcon from "@mui/icons-material/Delete";
-import Update from "./update/Update";
 import { formatDate } from "../../utils/formatDate";
+import TodoActions from "../../components/TodoActions";
 
 export const useTodos = () => {
-  const { mutateAsync } = HandleDelete();
   const { isLoading, data, isError, error } = useQuery("todo", fetchTodoApi);
   const memoizedData = useMemo(() => data, [data]);
   const columns = useMemo(
@@ -25,22 +21,10 @@ export const useTodos = () => {
       {
         Header: "Actions",
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        Cell: ({ row }: { row: any }) => (
-          <>
-            <Update {...row.original} />
-            <Button
-              key={row.original.id}
-              onClick={() => {
-                mutateAsync(row.original.id);
-              }}
-            >
-              <DeleteIcon />
-            </Button>
-          </>
-        ),
+        Cell: ({ row }: { row: any }) => <TodoActions {...row} />,
       },
     ],
-    [mutateAsync]
+    []
   );
   return { isLoading, todoData: memoizedData, isError, error, columns };
 };

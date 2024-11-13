@@ -1,7 +1,8 @@
 import { useMutation, useQueryClient } from "react-query";
 import addTodoApi from "../../../api/addTodoApi/addTodoApi";
 import { useState } from "react";
-import axios from "axios";
+import checkErrorType from "../../../utils/checkErrorType";
+import { AddTodoType } from "./addTodo.types";
 
 export const useAddTodo = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -18,21 +19,21 @@ export const useAddTodo = () => {
         setResponse("User Successfully logged in!");
         handleClose();
       },
-      onError: (error) => {
-        if (axios.isAxiosError(error) && error.response) {
-          setResponse(`Error:${error.response.data.message}`);
-        } else if (error instanceof Error)
-          setResponse(`Error: ${error.message}`);
+      onError: (error: Error) => {
+        const returnMessage = checkErrorType(error);
+        setResponse(returnMessage);
       },
     }
   );
+
+  const handleAddTask = (taskToAdd: AddTodoType) => mutateAsync(taskToAdd);
   return {
     response,
     isLoading,
     data,
     isError,
     error,
-    mutateAsync,
+    handleAddTask,
     handleOpen,
     handleClose,
     openModal,
