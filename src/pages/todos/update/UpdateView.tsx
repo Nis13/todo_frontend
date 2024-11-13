@@ -48,7 +48,7 @@ const UpdateView = ({
             sx={{ padding: "1rem" }}
             color="#90caf9"
           >
-            Add Task
+            Update Task
           </Typography>
           <Formik
             initialValues={{
@@ -109,7 +109,7 @@ const UpdateView = ({
                         sx={{ backgroundColor: "#90caf9" }}
                         disabled={isSubmitting}
                       >
-                        Add Task
+                        Update Task
                       </Button>
                     </Box>
                   </Box>

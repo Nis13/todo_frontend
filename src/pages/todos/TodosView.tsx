@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Tab, Tabs } from "@mui/material";
 import { TodosViewProps } from "./todo.types";
 import ReactTable from "../../components/Table";
 import AddTodo from "./addTodo/AddTodo";
@@ -6,10 +6,12 @@ import CircularProgress from "@mui/joy/CircularProgress";
 
 export const TodosView = ({
   isLoading,
-  todoData,
   isError,
   error,
   columns,
+  activeTab,
+  handleChange,
+  filteredTodos,
 }: TodosViewProps) => {
   if (isLoading)
     return (
@@ -23,10 +25,16 @@ export const TodosView = ({
       </Box>
     );
   if (isError && error instanceof Error) return <Box>{error.message}</Box>;
+
   return (
     <>
       <AddTodo />
-      <ReactTable columns={columns} data={todoData} />
+      <Tabs value={activeTab} onChange={handleChange} aria-label="todo tabs">
+        <Tab label="All" value="all" />
+        <Tab label="Pending" value="pending" />
+        <Tab label="Completed" value="completed" />
+      </Tabs>
+      <ReactTable columns={columns} data={filteredTodos} />
     </>
   );
 };

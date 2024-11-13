@@ -1,11 +1,19 @@
 import { useQuery } from "react-query";
 import fetchTodoApi from "../../api/fetchTodoApi/fetchTodoApi";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { formatDate } from "../../utils/formatDate";
 import TodoActions from "../../components/TodoActions";
+import { ToDo, TodoStatus } from "./todo.types";
 
 export const useTodos = () => {
   const { isLoading, data, isError, error } = useQuery("todo", fetchTodoApi);
+  const [activeTab, setActiveTab] = useState<"all" | "pending" | "completed">(
+    "all"
+  );
+
+  const handleChange = (_event: React.SyntheticEvent, newValue: TodoStatus) => {
+    setActiveTab(newValue);
+  };
   const memoizedData = useMemo(() => data, [data]);
   const columns = useMemo(
     () => [
@@ -26,5 +34,21 @@ export const useTodos = () => {
     ],
     []
   );
-  return { isLoading, todoData: memoizedData, isError, error, columns };
+
+  const filteredTodos = memoizedData
+    ? memoizedData.filter((todo: ToDo) => {
+        if (activeTab === "all") return true;
+        return todo.status === activeTab;
+      })
+    : null;
+  return {
+    isLoading,
+    memoizedData,
+    isError,
+    error,
+    columns,
+    handleChange,
+    activeTab,
+    filteredTodos,
+  };
 };

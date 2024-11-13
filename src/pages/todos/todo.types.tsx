@@ -12,10 +12,16 @@ export type Columns = {
   Header: string;
   accessor: string;
 };
+
+export type TodoStatus = "all" | "pending" | "completed";
+
 export type TodosViewProps = {
   isLoading: boolean;
-  todoData: ToDo[];
+  memoizedData: ToDo[];
   isError: boolean;
   error: unknown;
   columns: Column[];
+  activeTab: TodoStatus;
+  filteredTodos: ToDo[];
+  handleChange: (event: React.SyntheticEvent, value: TodoStatus) => void;
 };
