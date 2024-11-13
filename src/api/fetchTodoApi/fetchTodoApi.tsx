@@ -1,8 +1,8 @@
 import api from "../api";
 
-const useFetchTodoApi = async () => {
+const fetchTodoApi = async () => {
   const response = await api.get("/todo");
   return response.data;
 };
 
-export default useFetchTodoApi;
+export default fetchTodoApi;

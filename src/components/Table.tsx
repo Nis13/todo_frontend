@@ -1,4 +1,3 @@
-import React from "react";
 import { Column, usePagination, useSortBy, useTable } from "react-table";
 import {
   Button,
