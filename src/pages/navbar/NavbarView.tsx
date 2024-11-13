@@ -35,23 +35,24 @@ export const NavBarView = ({
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            TodoApp
-          </Typography>
+          <NavLink to="/" style={{ textDecoration: "none" }}>
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              sx={{
+                mr: 2,
+                display: { xs: "none", md: "flex" },
+                fontFamily: "monospace",
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                color: "inherit",
+                textDecoration: "none",
+              }}
+            >
+              TodoApp
+            </Typography>
+          </NavLink>
 
           <Box
             sx={{
@@ -123,7 +124,13 @@ export const NavBarView = ({
           >
             ToDoApp
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex" },
+              justifyContent: "flex-end",
+            }}
+          >
             {pages.map((page) =>
               page.isVisible ? (
                 <NavLink
@@ -139,8 +146,6 @@ export const NavBarView = ({
                 </NavLink>
               ) : null
             )}
-          </Box>
-          <Box sx={{ flexGrow: 0 }}>
             {isAuthenticated ? (
               <Button onClick={handleLogout}>
                 <Typography color="white" sx={{ textAlign: "center" }}>

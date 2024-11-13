@@ -1,4 +1,3 @@
-import React from "react";
 import { useAddTodo } from "./useAddTodo";
 import AddTodoView from "./AddTodoView";
 

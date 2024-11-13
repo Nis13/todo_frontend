@@ -1,9 +1,11 @@
 import { Column } from "react-table";
+import { TodoStatusEnum } from "./update/update.types";
 
 export type ToDo = {
+  id: string;
   title: string;
-  date: Date;
-  status: string;
+  date: string;
+  status: TodoStatusEnum;
 };
 
 export type Columns = {
@@ -12,7 +14,7 @@ export type Columns = {
 };
 export type TodosViewProps = {
   isLoading: boolean;
-  memoizedData: ToDo[];
+  todoData: ToDo[];
   isError: boolean;
   error: unknown;
   columns: Column[];

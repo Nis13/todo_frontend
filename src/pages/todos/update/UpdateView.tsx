@@ -1,14 +1,10 @@
-import {
-  Box,
-  Button,
-  Container,
-  Modal,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Modal, TextField, Typography } from "@mui/material";
 import { Form, Formik } from "formik";
 import WarningText from "../../../components/WarningText";
-import { AddTodoViewProps } from "./addTodo.types";
+import Select from "react-select";
+import { updateSchema } from "./update.schema";
+import { UpdateViewProps } from "./update.types";
+import EditIcon from "@mui/icons-material/Edit";
 
 const style = {
   position: "absolute",
@@ -22,19 +18,23 @@ const style = {
   p: 4,
 };
 
-const AddTodoView = ({
-  mutateAsync,
+const statusOptions = [
+  { value: "pending", label: "Pending" },
+  { value: "completed", label: "Completed" },
+];
+
+const UpdateView = ({
+  handleSubmit,
   openModal,
   handleOpen,
   handleClose,
-}: AddTodoViewProps) => {
+  data,
+}: UpdateViewProps) => {
   return (
-    <Container sx={{ display: "flex", justifyContent: "center" }}>
-      <Box alignContent={"center"}>
-        <Button variant="contained" onClick={handleOpen} size="large">
-          Add
-        </Button>
-      </Box>
+    <div>
+      <Button onClick={handleOpen}>
+        <EditIcon />
+      </Button>
       <Modal
         open={openModal}
         onClose={handleClose}
@@ -52,15 +52,24 @@ const AddTodoView = ({
           </Typography>
           <Formik
             initialValues={{
-              title: "",
+              id: data.id,
+              title: data.title,
+              status: data.status,
             }}
+            validationSchema={updateSchema}
             onSubmit={async (values) => {
-              mutateAsync(values);
+              handleSubmit(values);
             }}
           >
             {(props) => {
-              const { values, handleChange, errors, touched, isSubmitting } =
-                props;
+              const {
+                values,
+                handleChange,
+                errors,
+                touched,
+                isSubmitting,
+                setFieldValue,
+              } = props;
               return (
                 <Form>
                   <Box
@@ -79,9 +88,20 @@ const AddTodoView = ({
                       value={values.title}
                       onChange={handleChange}
                     />
-                    {errors.title && touched.title ? (
+                    {typeof errors.title === "string" && touched.title ? (
                       <WarningText message={errors.title} />
                     ) : null}
+                    <Select
+                      options={statusOptions}
+                      name="status"
+                      defaultValue={statusOptions.find(
+                        (option) => option.value === data.status
+                      )}
+                      isSearchable={false}
+                      onChange={(option) =>
+                        setFieldValue("status", option?.value)
+                      }
+                    />
                     <Box alignSelf={"center"}>
                       <Button
                         variant="contained"
@@ -99,8 +119,8 @@ const AddTodoView = ({
           </Formik>
         </Box>
       </Modal>
-    </Container>
+    </div>
   );
 };
 
-export default AddTodoView;
+export default UpdateView;

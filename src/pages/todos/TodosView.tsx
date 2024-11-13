@@ -4,7 +4,7 @@ import ReactTable from "../../components/Table";
 import AddTodo from "./addTodo/AddTodo";
 export const TodosView = ({
   isLoading,
-  memoizedData,
+  todoData,
   isError,
   error,
   columns,
@@ -13,7 +13,7 @@ export const TodosView = ({
   if (isError && error instanceof Error) return <Box>{error.message}</Box>;
   return (
     <>
-      <ReactTable columns={columns} data={memoizedData} />
+      <ReactTable columns={columns} data={todoData} />
       {/* <Button onClick={handleClick}>Add</Button> */}
       <AddTodo />
     </>
