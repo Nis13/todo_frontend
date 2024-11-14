@@ -36,7 +36,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
           variant="h3"
           textAlign={"center"}
           sx={{ padding: "1rem" }}
-          color="#90caf9"
+          color="primary"
         >
           Login
         </Typography>
@@ -70,6 +70,13 @@ export const LoginView: React.FC<LoginViewProps> = ({
                     name="email"
                     value={values.email}
                     onChange={handleChange}
+                    sx={{
+                      "& .MuiOutlinedInput-root": {
+                        "&:hover fieldset": {
+                          borderColor: "primary.main",
+                        },
+                      },
+                    }}
                   />
                   {errors.email && touched.email ? (
                     <WarningText message={errors.email} />
@@ -81,6 +88,13 @@ export const LoginView: React.FC<LoginViewProps> = ({
                     name="password"
                     value={values.password}
                     onChange={handleChange}
+                    sx={{
+                      "& .MuiOutlinedInput-root": {
+                        "&:hover fieldset": {
+                          borderColor: "primary.main",
+                        },
+                      },
+                    }}
                   />
                   {errors.password && touched.password ? (
                     <WarningText message={errors.password} />
@@ -89,7 +103,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
                     <Button
                       variant="contained"
                       type="submit"
-                      sx={{ backgroundColor: "#90caf9" }}
+                      sx={{ backgroundColor: "primary.main" }}
                       disabled={isLoading || isSubmitting}
                     >
                       Login

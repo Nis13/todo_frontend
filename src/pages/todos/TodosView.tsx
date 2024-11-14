@@ -2,7 +2,7 @@ import { Box, Tab, Tabs } from "@mui/material";
 import { TodosViewProps } from "./todo.types";
 import ReactTable from "../../components/Table";
 import AddTodo from "./addTodo/AddTodo";
-import CircularProgress from "@mui/joy/CircularProgress";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export const TodosView = ({
   isLoading,

@@ -9,7 +9,7 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import IconButton from "@mui/joy/IconButton";
+import IconButton from "@mui/material/IconButton";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
@@ -52,12 +52,15 @@ const ReactTable = <T extends object>({
   } = tableInstance;
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer
+      component={Paper}
+      sx={{ margin: "2rem 0", padding: "1rem" }}
+    >
       <Table
         size="small"
         aria-label="a dense table"
         {...getTableProps()}
-        sx={{ maxWidth: "70%", margin: "auto", border: 1 }}
+        sx={{ maxWidth: "60%", margin: "auto", border: 1 }}
       >
         <TableHead>
           {headerGroups.map((hg) => (
@@ -71,7 +74,7 @@ const ReactTable = <T extends object>({
                   key={column.getHeaderProps().key}
                   sx={{
                     borderBottom: 1,
-                    backgroundColor: "#1976d2",
+                    backgroundColor: "primary.main",
                     color: "white",
                   }}
                 >
@@ -108,18 +111,14 @@ const ReactTable = <T extends object>({
       </Table>
       <Container>
         <IconButton
-          size="sm"
-          variant="outlined"
           color="primary"
           disabled={!canPreviousPage}
           onClick={previousPage}
-          sx={{ bgcolor: "background.surface" }}
+          sx={{ backgroundColor: "background.surface" }}
         >
           <ArrowBackIosIcon />
         </IconButton>
         <IconButton
-          size="sm"
-          variant="outlined"
           color="primary"
           disabled={!canNextPage}
           onClick={nextPage}

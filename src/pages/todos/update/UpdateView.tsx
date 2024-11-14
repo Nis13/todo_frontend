@@ -46,7 +46,7 @@ const UpdateView = ({
             variant="h3"
             textAlign={"center"}
             sx={{ padding: "1rem" }}
-            color="#90caf9"
+            color="primary.main"
           >
             Update Task
           </Typography>
@@ -106,7 +106,7 @@ const UpdateView = ({
                       <Button
                         variant="contained"
                         type="submit"
-                        sx={{ backgroundColor: "#90caf9" }}
+                        sx={{ backgroundColor: "primary.main" }}
                         disabled={isSubmitting}
                       >
                         Update Task

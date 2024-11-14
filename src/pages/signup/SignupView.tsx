@@ -1,7 +1,13 @@
-import { Box, Container, Paper, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  Paper,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { Form, Formik } from "formik";
 import Select from "react-select";
-import Button from "../../components/Button";
 import { signupSchema } from "./signup.schema";
 import { SignupViewProps } from "./signup.types";
 import WarningText from "../../components/WarningText";
@@ -31,7 +37,7 @@ const SignupView = ({ response, isLoading, handleSignup }: SignupViewProps) => {
           variant="h3"
           textAlign={"center"}
           sx={{ padding: "1rem" }}
-          color="#90caf9"
+          color="primary.main"
         >
           Signup
         </Typography>
@@ -74,6 +80,13 @@ const SignupView = ({ response, isLoading, handleSignup }: SignupViewProps) => {
                     name="name"
                     value={values.name}
                     onChange={handleChange}
+                    sx={{
+                      "& .MuiOutlinedInput-root": {
+                        "&:hover fieldset": {
+                          borderColor: "primary.main",
+                        },
+                      },
+                    }}
                   />
                   {errors.name && touched.name ? (
                     <WarningText message={errors.name} />
@@ -85,6 +98,13 @@ const SignupView = ({ response, isLoading, handleSignup }: SignupViewProps) => {
                     name="email"
                     value={values.email}
                     onChange={handleChange}
+                    sx={{
+                      "& .MuiOutlinedInput-root": {
+                        "&:hover fieldset": {
+                          borderColor: "primary.main",
+                        },
+                      },
+                    }}
                   />
                   {errors.email && touched.email ? (
                     <WarningText message={errors.email} />
@@ -96,6 +116,13 @@ const SignupView = ({ response, isLoading, handleSignup }: SignupViewProps) => {
                     name="password"
                     value={values.password}
                     onChange={handleChange}
+                    sx={{
+                      "& .MuiOutlinedInput-root": {
+                        "&:hover fieldset": {
+                          borderColor: "primary.main",
+                        },
+                      },
+                    }}
                   />
                   {errors.password && touched.password ? (
                     <WarningText message={errors.password} />
@@ -113,11 +140,13 @@ const SignupView = ({ response, isLoading, handleSignup }: SignupViewProps) => {
                   ) : null}
                   <Box textAlign={"center"}>
                     <Button
+                      variant="contained"
                       type="submit"
-                      btnSX={{ backgroundColor: "#90caf9" }}
-                      isDisabled={isSubmitting || isLoading}
-                      btnText="Signup"
-                    />
+                      sx={{ backgroundColor: "primary.main" }}
+                      disabled={isSubmitting || isLoading}
+                    >
+                      Signup
+                    </Button>
                   </Box>
                 </Box>
               </Form>

@@ -101,6 +101,13 @@ export const NavBarView = ({
                   </MenuItem>
                 ) : null
               )}
+              {isAuthenticated ? (
+                <Button onClick={handleLogout}>
+                  <Typography color="inherit" sx={{ textAlign: "center" }}>
+                    Logout
+                  </Typography>
+                </Button>
+              ) : null}
             </Menu>
           </Box>
           <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />

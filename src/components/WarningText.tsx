@@ -6,7 +6,7 @@ interface WarningTextProps {
 
 const WarningText = ({ message, boxSX }: WarningTextProps) => {
   return (
-    <Box color={"red"} sx={{ ...boxSX }}>
+    <Box color="warning.main" sx={{ ...boxSX }}>
       {message}
     </Box>
   );

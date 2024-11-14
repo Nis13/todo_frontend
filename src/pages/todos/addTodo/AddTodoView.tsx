@@ -29,7 +29,7 @@ const AddTodoView = ({
   handleClose,
 }: AddTodoViewProps) => {
   return (
-    <Container sx={{ margin: "1rem" }}>
+    <Container sx={{ margin: "1rem 0" }}>
       <Box alignContent={"center"}>
         <Button variant="contained" onClick={handleOpen} size="large">
           Add Task
@@ -46,7 +46,7 @@ const AddTodoView = ({
             variant="h3"
             textAlign={"center"}
             sx={{ padding: "1rem" }}
-            color="#90caf9"
+            color="primary.main"
           >
             Add Task
           </Typography>
@@ -86,7 +86,7 @@ const AddTodoView = ({
                       <Button
                         variant="contained"
                         type="submit"
-                        sx={{ backgroundColor: "#90caf9" }}
+                        sx={{ backgroundColor: "primary.main" }}
                         disabled={isSubmitting}
                       >
                         Add Task
