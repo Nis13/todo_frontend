@@ -9,6 +9,7 @@ import {
 import { Form, Formik } from "formik";
 import WarningText from "../../../components/WarningText";
 import { AddTodoViewProps } from "./addTodo.types";
+import { addSchema } from "./addTodo.schema";
 
 const style = {
   position: "absolute",
@@ -27,6 +28,9 @@ const AddTodoView = ({
   openModal,
   handleOpen,
   handleClose,
+  isLoading,
+  response,
+  isError,
 }: AddTodoViewProps) => {
   return (
     <Container sx={{ margin: "1rem 0" }}>
@@ -54,6 +58,7 @@ const AddTodoView = ({
             initialValues={{
               title: "",
             }}
+            validationSchema={addSchema}
             onSubmit={async (values) => {
               handleAddTask(values);
             }}
@@ -87,10 +92,13 @@ const AddTodoView = ({
                         variant="contained"
                         type="submit"
                         sx={{ backgroundColor: "primary.main" }}
-                        disabled={isSubmitting}
+                        disabled={isLoading || isSubmitting || isError}
                       >
                         Add Task
                       </Button>
+                    </Box>
+                    <Box>
+                      <WarningText message={response} />
                     </Box>
                   </Box>
                 </Form>

@@ -3,7 +3,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import HandleDelete from "../pages/todos/handleDelete/useHandleDelete";
 import Update from "../pages/todos/update/Update";
 import { JSX } from "react/jsx-runtime";
-import { ToDo } from "../pages/todos/todo.types";
+import { ToDo } from "../pages/todos/todos.types";
 
 const TodoActions = (row: { original: JSX.IntrinsicAttributes & ToDo }) => {
   const { handleDelete } = HandleDelete();

@@ -6,4 +6,7 @@ export type AddTodoViewProps = {
   openModal: boolean;
   handleOpen: () => void;
   handleClose: () => void;
+  isLoading: boolean;
+  response: string | null;
+  isError: boolean;
 };

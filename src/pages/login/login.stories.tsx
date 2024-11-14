@@ -29,6 +29,5 @@ LoginErrorResponse.args = {
 export const LoginSuccessResponse = Template.bind({});
 LoginSuccessResponse.args = {
   ...Default.args,
-  mutate: async () => new Promise((resolve) => setTimeout(resolve, 1000)),
   response: "User Successfully logged in!",
 };

@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoutes";
 import { allRoutes } from "./Routes";
 import Layout from "../layout/Layout";
+import Notfound from "../pages/notFound/NotFound";
 
 const AppRoutes = () => {
   return (
@@ -16,6 +17,7 @@ const AppRoutes = () => {
           ))}
         </Route>
       </Route>
+      <Route path="*" element={<Notfound />} />
     </Routes>
   );
 };

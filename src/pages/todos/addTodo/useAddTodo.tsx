@@ -16,7 +16,6 @@ export const useAddTodo = () => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries("todo");
-        setResponse("User Successfully logged in!");
         handleClose();
       },
       onError: (error: Error) => {

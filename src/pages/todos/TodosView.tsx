@@ -1,5 +1,5 @@
 import { Box, Tab, Tabs } from "@mui/material";
-import { TodosViewProps } from "./todo.types";
+import { TodosViewProps } from "./todos.types";
 import ReactTable from "../../components/Table";
 import AddTodo from "./addTodo/AddTodo";
 import CircularProgress from "@mui/material/CircularProgress";

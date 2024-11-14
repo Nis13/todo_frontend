@@ -20,4 +20,6 @@ export type UpdateViewProps = {
   handleOpen: () => void;
   handleClose: () => void;
   data: UpdateTodoApiProps;
+  response: string | null;
+  isLoading: boolean;
 };

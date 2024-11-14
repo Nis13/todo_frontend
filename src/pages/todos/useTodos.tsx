@@ -3,7 +3,7 @@ import fetchTodoApi from "../../api/fetchTodoApi/fetchTodoApi";
 import { useMemo, useState } from "react";
 import { formatDate } from "../../utils/formatDate";
 import TodoActions from "../../components/TodoActions";
-import { ToDo, TodoStatus } from "./todo.types";
+import { ToDo, TodoStatus } from "./todos.types";
 
 export const useTodos = () => {
   const { isLoading, data, isError, error } = useQuery("todo", fetchTodoApi);
