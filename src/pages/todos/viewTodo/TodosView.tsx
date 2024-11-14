@@ -1,7 +1,6 @@
 import { Box, Tab, Tabs } from "@mui/material";
 import { TodosViewProps } from "./todos.types";
-import ReactTable from "../../components/Table";
-import AddTodo from "./addTodo/AddTodo";
+import ReactTable from "../../../components/Table";
 import CircularProgress from "@mui/material/CircularProgress";
 
 export const TodosView = ({
@@ -28,7 +27,6 @@ export const TodosView = ({
 
   return (
     <>
-      <AddTodo />
       <Tabs value={activeTab} onChange={handleChange} aria-label="todo tabs">
         <Tab label="All" value="all" />
         <Tab label="Pending" value="pending" />

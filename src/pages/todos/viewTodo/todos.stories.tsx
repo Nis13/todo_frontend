@@ -1,6 +1,6 @@
 import { StoryFn } from "@storybook/react";
 import { TodosView } from "./TodosView";
-import { TodoStatusEnum } from "./update/update.types";
+import { TodoStatusEnum } from "../update/update.types";
 
 export default {
   title: "pages/TodoPage/viewTodo",
@@ -29,8 +29,8 @@ TodosError.args = {
   error: Error("Error has occured"),
 };
 
-export const TodosSuccess = Template.bind({});
-TodosSuccess.args = {
+export const TodosAllTodos = Template.bind({});
+TodosAllTodos.args = {
   ...Default.args,
   columns: [
     { Header: "Title", accessor: "title" },
@@ -45,6 +45,41 @@ TodosSuccess.args = {
       id: "1",
       title: "Clean Room",
       status: TodoStatusEnum.PENDING,
+      date: Date.now().toString(),
+    },
+    {
+      id: "2",
+      title: "Water Plants",
+      status: TodoStatusEnum.COMPLETED,
+      date: Date.now().toString(),
+    },
+  ],
+  activeTab: "all",
+};
+
+export const TodosPending = Template.bind({});
+TodosPending.args = {
+  ...TodosAllTodos.args,
+  activeTab: "pending",
+  filteredTodos: [
+    {
+      id: "1",
+      title: "Clean Room",
+      status: TodoStatusEnum.PENDING,
+      date: Date.now().toString(),
+    },
+  ],
+};
+
+export const TodosCompleted = Template.bind({});
+TodosCompleted.args = {
+  ...TodosAllTodos.args,
+  activeTab: "completed",
+  filteredTodos: [
+    {
+      id: "2",
+      title: "Water Plants",
+      status: TodoStatusEnum.COMPLETED,
       date: Date.now().toString(),
     },
   ],

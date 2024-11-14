@@ -1,5 +1,5 @@
 import { Column } from "react-table";
-import { TodoStatusEnum } from "./update/update.types";
+import { TodoStatusEnum } from "../update/update.types";
 
 export type ToDo = {
   id: string;

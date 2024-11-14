@@ -27,6 +27,7 @@ const ReactTable = <T extends object>({
       columns,
       data,
       initialState: {
+        pageSize: 5,
         sortBy: [
           {
             id: "createdAt",

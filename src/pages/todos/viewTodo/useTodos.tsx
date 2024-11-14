@@ -1,8 +1,8 @@
 import { useQuery } from "react-query";
-import useFetchTodoApi from "../../api/fetchTodoApi/useFetchTodoApi";
+import useFetchTodoApi from "../../../api/fetchTodoApi/useFetchTodoApi";
 import { useMemo, useState } from "react";
-import { formatDate } from "../../utils/formatDate";
-import TodoActions from "../../components/TodoActions";
+import { formatDate } from "../../../utils/formatDate";
+import TodoActions from "../../../components/TodoActions";
 import { ToDo, TodoStatus } from "./todos.types";
 
 export const useTodos = () => {
@@ -41,6 +41,7 @@ export const useTodos = () => {
         return todo.status === activeTab;
       })
     : null;
+
   return {
     isLoading,
     memoizedData,
