@@ -15,7 +15,7 @@ export const useSignup = () => {
       onSuccess: () => {
         queryClient.invalidateQueries("user");
         setResponse("User Created Successfully!");
-        navigate("login");
+        navigate("/login");
       },
       onError: (error: Error) => {
         const returnMessage = checkErrorType(error);

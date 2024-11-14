@@ -32,3 +32,9 @@ AddViewError.args = {
   isError: true,
   response: "Error Occured",
 };
+
+export const AddViewAddTask = Template.bind({});
+AddViewAddTask.args = {
+  ...Default.args,
+  openModal: true,
+};

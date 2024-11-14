@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "react-query";
-import addTodoApi from "../../../api/addTodoApi/addTodoApi";
+import useAddTodoApi from "../../../api/addTodoApi/useAddTodoApi";
 import { useState } from "react";
 import checkErrorType from "../../../utils/checkErrorType";
 import { AddTodoType } from "./addTodo.types";
@@ -12,7 +12,7 @@ export const useAddTodo = () => {
   const handleOpen = () => setOpenModal(true);
   const handleClose = () => setOpenModal(false);
   const { isLoading, data, isError, error, mutateAsync } = useMutation(
-    addTodoApi,
+    useAddTodoApi,
     {
       onSuccess: () => {
         queryClient.invalidateQueries("todo");

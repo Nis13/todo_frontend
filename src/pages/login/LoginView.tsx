@@ -10,6 +10,7 @@ import { Form, Formik } from "formik";
 import { LoginViewProps } from "./login.types";
 import WarningText from "../../components/WarningText";
 import { loginSchema } from "./login.schema";
+import Loading from "../../components/Loading";
 
 export const LoginView: React.FC<LoginViewProps> = ({
   isLoading,
@@ -66,7 +67,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
                 >
                   <TextField
                     label="email"
-                    type="email"
+                    type="text"
                     name="email"
                     value={values.email}
                     onChange={handleChange}
@@ -114,7 +115,10 @@ export const LoginView: React.FC<LoginViewProps> = ({
             );
           }}
         </Formik>
-        <Box color={"red"}>{isLoading ? "Loading...." : response}</Box>
+        <Box>
+          {isLoading ? <Loading height="2rem" /> : null}
+          <WarningText message={response} />
+        </Box>
       </Paper>
     </Container>
   );

@@ -10,6 +10,7 @@ import { Form, Formik } from "formik";
 import WarningText from "../../../components/WarningText";
 import { AddTodoViewProps } from "./addTodo.types";
 import { addSchema } from "./addTodo.schema";
+import Loading from "../../../components/Loading";
 
 const style = {
   position: "absolute",
@@ -99,6 +100,7 @@ const AddTodoView = ({
                     </Box>
                     <Box>
                       <WarningText message={response} />
+                      {isLoading ? <Loading height="1rem" /> : null}
                     </Box>
                   </Box>
                 </Form>

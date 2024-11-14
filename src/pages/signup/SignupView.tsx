@@ -49,9 +49,8 @@ const SignupView = ({ response, isLoading, handleSignup }: SignupViewProps) => {
             role: options[0].value,
           }}
           validationSchema={signupSchema}
-          onSubmit={async (values, { resetForm }) => {
+          onSubmit={async (values) => {
             handleSignup(values);
-            resetForm();
           }}
         >
           {(props) => {
