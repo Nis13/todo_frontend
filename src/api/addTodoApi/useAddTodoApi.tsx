@@ -1,4 +1,4 @@
-import { AddTodoType } from "../../pages/todos/addTodo/addTodo.types";
+import { AddTodoType } from "../../pages/todos/add/add.types";
 import api from "../api";
 
 const useAddTodoApi = async (todo: AddTodoType) => {

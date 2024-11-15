@@ -71,6 +71,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
                     name="email"
                     value={values.email}
                     onChange={handleChange}
+                    disabled={isLoading}
                     sx={{
                       "& .MuiOutlinedInput-root": {
                         "&:hover fieldset": {
@@ -89,6 +90,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
                     name="password"
                     value={values.password}
                     onChange={handleChange}
+                    disabled={isLoading}
                     sx={{
                       "& .MuiOutlinedInput-root": {
                         "&:hover fieldset": {

@@ -7,10 +7,10 @@ import {
   Typography,
 } from "@mui/material";
 import { Form, Formik } from "formik";
-import Select from "react-select";
 import { signupSchema } from "./signup.schema";
 import { SignupViewProps } from "./signup.types";
 import WarningText from "../../components/WarningText";
+import CustomSelect from "../../components/Select";
 const options = [
   { value: "user", label: "User" },
   { value: "admin", label: "Admin" },
@@ -127,13 +127,21 @@ const SignupView = ({ response, isLoading, handleSignup }: SignupViewProps) => {
                     <WarningText message={errors.password} />
                   ) : null}
 
-                  <Select
+                  <CustomSelect
+                    options={options}
+                    name={"role"}
+                    defaultValue={options[0]}
+                    onChangeHandler={(option) =>
+                      setFieldValue("role", option?.value)
+                    }
+                  />
+                  {/* <Select
                     options={options}
                     name="role"
                     defaultValue={options[0]}
                     isSearchable={false}
                     onChange={(option) => setFieldValue("role", option?.value)}
-                  />
+                  /> */}
                   {errors.role && touched.role ? (
                     <WarningText message={errors.role} />
                   ) : null}

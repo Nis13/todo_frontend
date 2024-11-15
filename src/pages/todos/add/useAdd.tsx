@@ -2,9 +2,9 @@ import { useMutation, useQueryClient } from "react-query";
 import useAddTodoApi from "../../../api/addTodoApi/useAddTodoApi";
 import { useState } from "react";
 import checkErrorType from "../../../utils/checkErrorType";
-import { AddTodoType } from "./addTodo.types";
+import { AddTodoType } from "./add.types";
 
-export const useAddTodo = () => {
+export const useAdd = () => {
   const [openModal, setOpenModal] = useState(false);
   const [response, setResponse] = useState<string | null>(null);
   const queryClient = useQueryClient();

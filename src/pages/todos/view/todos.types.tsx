@@ -23,5 +23,6 @@ export type TodosViewProps = {
   columns: Column[];
   activeTab: TodoStatus;
   filteredTodos: ToDo[];
+  data: ToDo[];
   handleChange: (event: React.SyntheticEvent, value: TodoStatus) => void;
 };

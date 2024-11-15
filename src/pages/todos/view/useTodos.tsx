@@ -51,5 +51,6 @@ export const useTodos = () => {
     handleChange,
     activeTab,
     filteredTodos,
+    data,
   };
 };

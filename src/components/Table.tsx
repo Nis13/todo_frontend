@@ -53,15 +53,12 @@ const ReactTable = <T extends object>({
   } = tableInstance;
 
   return (
-    <TableContainer
-      component={Paper}
-      sx={{ margin: "2rem 0", padding: "1rem" }}
-    >
+    <TableContainer component={Paper}>
       <Table
         size="small"
         aria-label="a dense table"
         {...getTableProps()}
-        sx={{ maxWidth: "60%", margin: "auto", border: 1 }}
+        sx={{ margin: "auto", border: 1 }}
       >
         <TableHead>
           {headerGroups.map((hg) => (

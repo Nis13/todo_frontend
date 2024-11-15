@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 const Home = () => {
   return (
-    <Container maxWidth="sm">
+    <Container maxWidth="md">
       <Box
         display="flex"
         flexDirection="column"
@@ -32,7 +32,7 @@ const Home = () => {
             Stay organized and keep track of your tasks easily. Get started by
             logging in or signing up.
           </Typography>
-          <Box display="flex" flexDirection="column" gap={2}>
+          <Box display="flex" gap={2} maxHeight={"3rem"} minWidth={"13rem"}>
             <Button
               component={NavLink}
               to="login"

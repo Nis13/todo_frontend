@@ -2,6 +2,7 @@ import { Box, Tab, Tabs } from "@mui/material";
 import { TodosViewProps } from "./todos.types";
 import ReactTable from "../../../components/Table";
 import CircularProgress from "@mui/material/CircularProgress";
+import NoTask from "../../../components/NoTask";
 
 export const TodosView = ({
   isLoading,
@@ -11,6 +12,7 @@ export const TodosView = ({
   activeTab,
   handleChange,
   filteredTodos,
+  data,
 }: TodosViewProps) => {
   if (isLoading)
     return (
@@ -23,6 +25,9 @@ export const TodosView = ({
         <CircularProgress />
       </Box>
     );
+  console.log(data);
+  if (data.length == 0) return <NoTask />;
+
   if (isError && error instanceof Error) return <Box>{error.message}</Box>;
 
   return (
@@ -32,7 +37,20 @@ export const TodosView = ({
         <Tab label="Pending" value="pending" />
         <Tab label="Completed" value="completed" />
       </Tabs>
-      <ReactTable columns={columns} data={filteredTodos} />
+
+      <Box
+        display={"flex"}
+        flexDirection={"column"}
+        maxWidth={"60%"}
+        margin={"auto"}
+        gap={"2rem"}
+      >
+        {filteredTodos.length == 0 ? (
+          <NoTask />
+        ) : (
+          <ReactTable columns={columns} data={filteredTodos} />
+        )}
+      </Box>
     </>
   );
 };

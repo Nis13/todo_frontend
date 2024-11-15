@@ -8,9 +8,10 @@ import {
 } from "@mui/material";
 import { Form, Formik } from "formik";
 import WarningText from "../../../components/WarningText";
-import { AddTodoViewProps } from "./addTodo.types";
-import { addSchema } from "./addTodo.schema";
+import { AddTodoViewProps } from "./add.types";
+import { addSchema } from "./add.schema";
 import Loading from "../../../components/Loading";
+import { IoMdAdd } from "react-icons/io";
 
 const style = {
   position: "absolute",
@@ -24,19 +25,19 @@ const style = {
   p: 4,
 };
 
-const AddTodoView = ({
+const AddView = ({
   handleAddTask,
   openModal,
   handleOpen,
   handleClose,
   isLoading,
   response,
-  isError,
 }: AddTodoViewProps) => {
   return (
-    <Container sx={{ margin: "1rem 0" }}>
-      <Box alignContent={"center"}>
+    <Container sx={{ display: "flex", justifyContent: "flex-end" }}>
+      <Box>
         <Button variant="contained" onClick={handleOpen} size="large">
+          <IoMdAdd />
           Add Task
         </Button>
       </Box>
@@ -83,6 +84,7 @@ const AddTodoView = ({
                       type="title"
                       name="title"
                       value={values.title}
+                      disabled={isLoading}
                       onChange={handleChange}
                     />
                     {errors.title && touched.title ? (
@@ -93,7 +95,7 @@ const AddTodoView = ({
                         variant="contained"
                         type="submit"
                         sx={{ backgroundColor: "primary.main" }}
-                        disabled={isLoading || isSubmitting || isError}
+                        disabled={isLoading || isSubmitting}
                       >
                         Add Task
                       </Button>
@@ -113,4 +115,4 @@ const AddTodoView = ({
   );
 };
 
-export default AddTodoView;
+export default AddView;

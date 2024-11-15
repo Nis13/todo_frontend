@@ -1,5 +1,5 @@
 import { StoryFn } from "@storybook/react";
-import AddTodoView from "./AddTodoView";
+import AddTodoView from "./AddView";
 
 export default {
   title: "pages/ToDoPage/addTodo",
