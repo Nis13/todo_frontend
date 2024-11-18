@@ -16,13 +16,27 @@ describe("Given: Login Api", () => {
 
       const { result } = renderHook(() => useLoginApi(userCredentialsDemoData));
 
+      expect(mockedPost).toHaveBeenCalledWith(
+        "/auth/login",
+        userCredentialsDemoData
+      );
       waitFor(() => {
-        expect(mockedPost).toHaveBeenCalledWith(
-          "/auth/login",
-          userCredentialsDemoData
-        );
         expect(result).toEqual("sampleAccessToken");
       });
+    });
+  });
+  describe("When: useLoginApi is called and error occurs", () => {
+    it("Then: should throw error", async () => {
+      mockedPost.mockRejectedValueOnce(new Error("Error Occured"));
+
+      await expect(useLoginApi(userCredentialsDemoData)).rejects.toThrow(
+        "Error Occured"
+      );
+
+      expect(mockedPost).toHaveBeenCalledWith(
+        "/auth/login",
+        userCredentialsDemoData
+      );
     });
   });
 });

@@ -1,5 +1,6 @@
 import { Column, usePagination, useSortBy, useTable } from "react-table";
 import {
+  Box,
   Container,
   Paper,
   Table,
@@ -50,8 +51,9 @@ const ReactTable = <T extends object>({
     previousPage,
     canPreviousPage,
     canNextPage,
+    pageCount,
+    state: { pageIndex },
   } = tableInstance;
-
   return (
     <TableContainer component={Paper}>
       <Table
@@ -108,22 +110,36 @@ const ReactTable = <T extends object>({
         </TableBody>
       </Table>
       <Container>
-        <IconButton
-          color="primary"
-          disabled={!canPreviousPage}
-          onClick={previousPage}
-          sx={{ backgroundColor: "background.surface" }}
-        >
-          <ArrowBackIosIcon />
-        </IconButton>
-        <IconButton
-          color="primary"
-          disabled={!canNextPage}
-          onClick={nextPage}
-          sx={{ bgcolor: "background.surface" }}
-        >
-          <ArrowForwardIosIcon />
-        </IconButton>
+        <Box display={"flex"} justifyContent={"center"}>
+          {canPreviousPage && (
+            <IconButton
+              color="primary"
+              disabled={!canPreviousPage}
+              onClick={previousPage}
+              sx={{ backgroundColor: "background.surface" }}
+            >
+              <ArrowBackIosIcon />
+            </IconButton>
+          )}
+          {pageCount > 1 && (
+            <Box display={"flex"} alignItems={"center"}>
+              <div>Page:</div>
+              <strong>
+                {pageIndex + 1} of {pageCount}
+              </strong>
+            </Box>
+          )}
+          {canNextPage && (
+            <IconButton
+              color="primary"
+              disabled={!canNextPage}
+              onClick={nextPage}
+              sx={{ bgcolor: "background.surface" }}
+            >
+              <ArrowForwardIosIcon />
+            </IconButton>
+          )}
+        </Box>
       </Container>
     </TableContainer>
   );

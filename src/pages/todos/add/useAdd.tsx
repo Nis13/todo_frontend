@@ -11,24 +11,25 @@ export const useAdd = () => {
 
   const handleOpen = () => setOpenModal(true);
   const handleClose = () => setOpenModal(false);
-  const { isLoading, data, isError, error, mutateAsync } = useMutation(
-    useAddTodoApi,
-    {
+
+  const { isLoading, isSuccess, data, isError, error, mutateAsync } =
+    useMutation(useAddTodoApi, {
       onSuccess: () => {
         queryClient.invalidateQueries("todo");
         handleClose();
       },
       onError: (error: Error) => {
+        console.log("error is being handled", error.message);
         const returnMessage = checkErrorType(error);
         setResponse(returnMessage);
       },
-    }
-  );
+    });
 
   const handleAddTask = (taskToAdd: AddTodoType) => mutateAsync(taskToAdd);
   return {
     response,
     isLoading,
+    isSuccess,
     data,
     isError,
     error,

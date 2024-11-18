@@ -34,7 +34,9 @@ const AddView = ({
   response,
 }: AddTodoViewProps) => {
   return (
-    <Container sx={{ display: "flex", justifyContent: "flex-end" }}>
+    <Container
+      sx={{ display: "flex", justifyContent: "flex-end", margin: "1rem 0" }}
+    >
       <Box>
         <Button variant="contained" onClick={handleOpen} size="large">
           <IoMdAdd />

@@ -1,3 +1,5 @@
+import { TodoStatusEnum } from "../pages/todos/update/update.types";
+
 export const todoDemoData = [
   {
     id: "1",
@@ -12,3 +14,14 @@ export const todoDemoData = [
     date: Date.now().toString(),
   },
 ];
+
+export const todoAddDemoData = { title: "Add Task" };
+
+export const todoUpdateDemoData = {
+  ...todoAddDemoData,
+  status: TodoStatusEnum.COMPLETED,
+};
+
+export const errorResponseDemo = "Error Occured";
+
+export const deletionSuccessMessage = "todo of ID: 1 successfully deleted";

@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "react-query";
-import deleteTodoApi from "../../../api/deleteTodoApi/deleteTodoApi";
+import useDeleteTodoApi from "../../../api/deleteTodoApi/useDeleteTodoApi";
 import { useState } from "react";
 import checkErrorType from "../../../utils/checkErrorType";
 
@@ -9,7 +9,7 @@ const useDelete = () => {
 
   const queryClient = useQueryClient();
   const { mutateAsync, isLoading, error, isError } = useMutation(
-    deleteTodoApi,
+    useDeleteTodoApi,
     {
       onSuccess: () => {
         queryClient.invalidateQueries("todo");

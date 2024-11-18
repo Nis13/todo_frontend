@@ -28,8 +28,9 @@ export const useTodos = () => {
       },
       {
         Header: "Actions",
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        Cell: ({ row }: { row: any }) => <TodoActions {...row} />,
+        Cell: ({ row }: { row: { original: ToDo } }) => (
+          <TodoActions {...row.original} />
+        ),
       },
     ],
     []
