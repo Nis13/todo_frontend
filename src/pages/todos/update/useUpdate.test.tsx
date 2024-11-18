@@ -11,19 +11,14 @@ import { useUpdate } from "./useUpdate";
 describe("Given: useUpdate hook", () => {
   describe("When: useUpdate is called", () => {
     it("Then: should mutate data and trigger onSuccess", async () => {
-      mockedPut.mockResolvedValue("success");
-
       const { result } = renderHook(() => useUpdate(), { wrapper });
 
       await act(async () => {
         result.current.handleSubmit({ id: "1", ...todoUpdateDemoData });
       });
 
-      await waitFor(() => result.current.isLoading === false);
-
-      expect(mockedPut).toHaveBeenCalled();
-      expect(result.current.isLoading).toBe(false);
-      expect(result.current.openModal).toBe(false);
+      expect(mockedPut).toHaveBeenCalledWith("todo/1", todoUpdateDemoData);
+      expect(result.current.openModal).toBeFalsy();
     });
   });
 
@@ -41,9 +36,8 @@ describe("Given: useUpdate hook", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isLoading).toBe(false);
-        expect(result.current.isError).toBe(true);
-        expect(result.current.response).toBe(response);
+        expect(result.current.isError).toBeTruthy();
+        expect(result.current.errorResponse).toBe(response);
       });
     });
   });

@@ -31,7 +31,7 @@ const AddView = ({
   handleOpen,
   handleClose,
   isLoading,
-  response,
+  errorResponse,
 }: AddTodoViewProps) => {
   return (
     <Container
@@ -103,7 +103,7 @@ const AddView = ({
                       </Button>
                     </Box>
                     <Box>
-                      <WarningText message={response} />
+                      <WarningText message={errorResponse} />
                       {isLoading ? <Loading height="1rem" /> : null}
                     </Box>
                   </Box>

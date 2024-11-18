@@ -5,7 +5,7 @@ import checkErrorType from "../../../utils/checkErrorType";
 
 const useDelete = () => {
   const [openModal, setOpenModal] = useState(false);
-  const [response, setResponse] = useState("");
+  const [errorResponse, setErrorResponse] = useState("");
 
   const queryClient = useQueryClient();
   const { mutateAsync, isLoading, error, isError } = useMutation(
@@ -17,7 +17,7 @@ const useDelete = () => {
       },
       onError: (error: Error) => {
         const message = checkErrorType(error);
-        setResponse(message);
+        setErrorResponse(message);
       },
     }
   );
@@ -34,7 +34,7 @@ const useDelete = () => {
     handleClose,
     handleOpen,
     isError,
-    response,
+    errorResponse,
   };
 };
 

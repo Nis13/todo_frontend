@@ -16,7 +16,11 @@ const options = [
   { value: "admin", label: "Admin" },
 ];
 
-const SignupView = ({ response, isLoading, handleSignup }: SignupViewProps) => {
+const SignupView = ({
+  errorResponse,
+  isLoading,
+  handleSignup,
+}: SignupViewProps) => {
   return (
     <Container
       sx={{
@@ -160,7 +164,7 @@ const SignupView = ({ response, isLoading, handleSignup }: SignupViewProps) => {
             );
           }}
         </Formik>
-        <WarningText message={isLoading ? "Loading...." : response} />
+        <WarningText message={isLoading ? "Loading...." : errorResponse} />
       </Paper>
     </Container>
   );

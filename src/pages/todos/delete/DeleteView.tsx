@@ -24,7 +24,7 @@ const DeleteView = ({
   handleOpen,
   handleClose,
   isLoading,
-  response,
+  errorResponse,
 }: DeleteViewProps) => {
   return (
     <Container>
@@ -67,7 +67,7 @@ const DeleteView = ({
               </Button>
             </Box>
             <Box marginTop={"1rem"}>
-              <WarningText message={response} />
+              <WarningText message={errorResponse} />
               {isLoading ? <Loading height="1rem" /> : null}
             </Box>
           </Box>

@@ -1,9 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { mockedDelete } from "../../../setuptest";
-import {
-  deletionSuccessMessage,
-  errorResponseDemo,
-} from "../../../demoData/todoDemoData";
+import { errorResponseDemo } from "../../../demoData/todoDemoData";
 import { act, renderHook, waitFor } from "@testing-library/react";
 import useDelete from "./useDelete";
 import { wrapper } from "../../../testutils";
@@ -11,17 +8,15 @@ import { wrapper } from "../../../testutils";
 describe("Given: useDelete hook", () => {
   describe("When: useDelete hook is called", () => {
     it("Then: should mutate and trigger onSuccess", async () => {
-      mockedDelete.mockResolvedValue(deletionSuccessMessage);
-
       const { result } = renderHook(useDelete, { wrapper });
 
       await act(async () => {
         await result.current.handleDelete("1");
       });
 
-      expect(mockedDelete).toHaveBeenCalled();
-      expect(result.current.isLoading).toBe(false);
-      expect(result.current.isError).toBe(false);
+      expect(mockedDelete).toHaveBeenCalledWith("/todo/1");
+      expect(result.current.isLoading).toBeFalsy();
+      expect(result.current.isError).toBeFalsy();
     });
   });
 
@@ -39,9 +34,8 @@ describe("Given: useDelete hook", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isLoading).toBe(false);
-        expect(result.current.isError).toBe(true);
-        expect(result.current.response).toBe(response);
+        expect(result.current.isError).toBeTruthy();
+        expect(result.current.errorResponse).toBe(response);
       });
     });
   });

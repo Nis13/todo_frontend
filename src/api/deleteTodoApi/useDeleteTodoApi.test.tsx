@@ -18,6 +18,7 @@ describe("Given: Delete Todo Api", () => {
       });
     });
   });
+
   describe("When: useDeleteTodoApi is called and error occurs", () => {
     it("Then: should throw error", async () => {
       mockedDelete.mockRejectedValueOnce(new Error(errorResponseDemo));

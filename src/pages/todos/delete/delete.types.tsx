@@ -4,6 +4,6 @@ export type DeleteViewProps = {
   openModal: boolean;
   handleOpen: () => void;
   handleClose: () => void;
-  response: string | null;
+  errorResponse: string | null;
   isLoading: boolean;
 };

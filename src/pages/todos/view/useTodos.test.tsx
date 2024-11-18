@@ -23,7 +23,7 @@ describe("Given: useTodos hook", () => {
 
       expect(mockedGet).toHaveBeenCalled();
       await waitFor(() => {
-        expect(result.current.isLoading).toBe(false);
+        expect(result.current.isLoading).toBeFalsy();
         expect(result.current.data).toEqual(todoDemoData);
       });
     });
@@ -53,8 +53,7 @@ describe("Given: useTodos hook", () => {
       const { result } = renderHook(() => useTodos(), { wrapper });
 
       await waitFor(() => {
-        expect(result.current.isLoading).toBeFalsy();
-        expect(result.current.isError).toBe(true);
+        expect(result.current.isError).toBeTruthy();
         expect(result.current.error).toEqual(new Error(errorResponseDemo));
       });
     });

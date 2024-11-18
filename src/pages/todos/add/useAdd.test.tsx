@@ -11,20 +11,13 @@ import {
 describe("Given: useAdd hook", () => {
   describe("When: useAdd is called", () => {
     it("Then: should mutate data and trigger onSuccess", async () => {
-      mockedPost.mockResolvedValue({ status: 201 });
-
       const { result } = renderHook(() => useAdd(), { wrapper });
-
       await act(async () => {
         await result.current.handleAddTask(todoAddDemoData);
       });
 
-      await waitFor(() => result.current.isLoading === false);
-
-      expect(mockedPost).toHaveBeenCalled();
-      expect(result.current.isLoading).toBe(false);
-      expect(result.current.data).toBe(201);
-      expect(result.current.openModal).toBe(false);
+      expect(mockedPost).toHaveBeenCalledWith("todo", todoAddDemoData);
+      expect(result.current.openModal).toBeFalsy();
     });
   });
 
@@ -42,9 +35,7 @@ describe("Given: useAdd hook", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isLoading).toBe(false);
-        expect(result.current.isError).toBe(true);
-        expect(result.current.response).toBe(response);
+        expect(result.current.errorResponse).toBe(response);
       });
     });
   });

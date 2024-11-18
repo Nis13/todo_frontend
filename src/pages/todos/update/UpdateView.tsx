@@ -30,7 +30,7 @@ const UpdateView = ({
   handleOpen,
   handleClose,
   data,
-  response,
+  errorResponse,
   isLoading,
 }: UpdateViewProps) => {
   return (
@@ -55,13 +55,12 @@ const UpdateView = ({
           </Typography>
           <Formik
             initialValues={{
-              id: data.id,
               title: data.title,
               status: data.status,
             }}
             validationSchema={updateSchema}
             onSubmit={async (values) => {
-              handleSubmit(values);
+              handleSubmit({ id: data.id, ...values });
             }}
           >
             {(props) => {
@@ -118,7 +117,7 @@ const UpdateView = ({
                       </Button>
                     </Box>
 
-                    <WarningText message={response} />
+                    <WarningText message={errorResponse} />
                     {isLoading ? <Loading height="1rem" /> : null}
                   </Box>
                 </Form>

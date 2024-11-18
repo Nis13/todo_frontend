@@ -8,39 +8,29 @@ import checkErrorType from "../../utils/checkErrorType";
 import { LoginCredentials } from "./login.types";
 
 const useLogin = () => {
-  const [response, setResponse] = useState<string | null>(null);
+  const [errorResponse, setErrorResponse] = useState<string | null>(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
 
-  const { isLoading, isSuccess, isError, mutateAsync, error } = useMutation(
-    useLoginApi,
-    {
-      onSuccess: (data) => {
-        queryClient.invalidateQueries("user");
-        setResponse("User Successfully logged in!");
-        dispatch(loginSuccess({ accessToken: data }));
-        navigate("/todos");
-      },
-      onError: (error: Error) => {
-        const returnMessage = checkErrorType(error);
-        setResponse(returnMessage);
-      },
-    }
-  );
+  const { isLoading, mutateAsync } = useMutation(useLoginApi, {
+    onSuccess: (data) => {
+      queryClient.invalidateQueries("user");
+      dispatch(loginSuccess({ accessToken: data }));
+      navigate("/todos");
+    },
+    onError: (error: Error) => {
+      const returnMessage = checkErrorType(error);
+      setErrorResponse(returnMessage);
+    },
+  });
 
-  const handleLogin = (loginCredentials: LoginCredentials) => {
+  const handleLogin = (loginCredentials: LoginCredentials) =>
     mutateAsync(loginCredentials);
-  };
   return {
     isLoading,
-    isSuccess,
-    isError,
     handleLogin,
-    error,
-    navigate,
-    response,
-    dispatch,
+    errorResponse,
   };
 };
 

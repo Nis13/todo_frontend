@@ -3,6 +3,7 @@ import { mockedPost } from "../../setuptest";
 import { renderHook, waitFor } from "@testing-library/react";
 import useLoginApi from "./useLoginApi";
 import { userCredentialsDemoData } from "../../demoData/userDemoData";
+import { errorResponseDemo } from "../../demoData/todoDemoData";
 
 describe("Given: Login Api", () => {
   describe("When: Login Api is called", () => {
@@ -27,10 +28,10 @@ describe("Given: Login Api", () => {
   });
   describe("When: useLoginApi is called and error occurs", () => {
     it("Then: should throw error", async () => {
-      mockedPost.mockRejectedValueOnce(new Error("Error Occured"));
+      mockedPost.mockRejectedValueOnce(new Error(errorResponseDemo));
 
       await expect(useLoginApi(userCredentialsDemoData)).rejects.toThrow(
-        "Error Occured"
+        errorResponseDemo
       );
 
       expect(mockedPost).toHaveBeenCalledWith(

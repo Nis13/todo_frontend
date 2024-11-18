@@ -12,14 +12,15 @@ describe("Given: Add Todo Api", () => {
     it("Then: should return the correct status", () => {
       mockedPost.mockResolvedValue(201);
 
-      const { result } = renderHook(() => useAddTodoApi({ title: "Test" }));
+      const { result } = renderHook(() => useAddTodoApi(todoAddDemoData));
 
-      expect(mockedPost).toHaveBeenCalledWith("todo", { title: "Test" });
+      expect(mockedPost).toHaveBeenCalledWith("todo", todoAddDemoData);
       waitFor(() => {
         expect(result).toEqual(201);
       });
     });
   });
+
   describe("When: useAddTodoApi is called and error occurs", () => {
     it("Then: should throw error", async () => {
       mockedPost.mockRejectedValueOnce(new Error(errorResponseDemo));

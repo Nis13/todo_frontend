@@ -6,7 +6,7 @@ import { AddTodoType } from "./add.types";
 
 export const useAdd = () => {
   const [openModal, setOpenModal] = useState(false);
-  const [response, setResponse] = useState<string | null>(null);
+  const [errorResponse, setErrorResponse] = useState<string | null>(null);
   const queryClient = useQueryClient();
 
   const handleOpen = () => setOpenModal(true);
@@ -19,14 +19,14 @@ export const useAdd = () => {
         handleClose();
       },
       onError: (error: Error) => {
-        const returnMessage = checkErrorType(error);
-        setResponse(returnMessage);
+        const errorMessage = checkErrorType(error);
+        setErrorResponse(errorMessage);
       },
     });
 
   const handleAddTask = (taskToAdd: AddTodoType) => mutateAsync(taskToAdd);
   return {
-    response,
+    errorResponse,
     isLoading,
     isSuccess,
     data,

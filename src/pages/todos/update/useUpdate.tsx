@@ -7,7 +7,7 @@ import { UpdateTodoApiProps } from "./update.types";
 export const useUpdate = () => {
   const [openModal, setOpenModal] = useState(false);
   const queryClient = useQueryClient();
-  const [response, setResponse] = useState("");
+  const [errorResponse, setErrorResponse] = useState("");
 
   const handleOpen = () => setOpenModal(true);
   const handleClose = () => setOpenModal(false);
@@ -21,7 +21,7 @@ export const useUpdate = () => {
       },
       onError: (error: Error) => {
         const message = checkErrorType(error);
-        setResponse(message);
+        setErrorResponse(message);
       },
     }
   );
@@ -35,6 +35,6 @@ export const useUpdate = () => {
     isError,
     error,
     handleSubmit,
-    response,
+    errorResponse,
   };
 };

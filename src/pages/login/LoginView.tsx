@@ -15,7 +15,7 @@ import Loading from "../../components/Loading";
 export const LoginView: React.FC<LoginViewProps> = ({
   isLoading,
   handleLogin,
-  response,
+  errorResponse,
 }) => {
   return (
     <Container
@@ -119,7 +119,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
         </Formik>
         <Box>
           {isLoading ? <Loading height="2rem" /> : null}
-          <WarningText message={response} />
+          <WarningText message={errorResponse} />
         </Box>
       </Paper>
     </Container>
