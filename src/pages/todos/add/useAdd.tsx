@@ -19,7 +19,6 @@ export const useAdd = () => {
         handleClose();
       },
       onError: (error: Error) => {
-        console.log("error is being handled", error.message);
         const returnMessage = checkErrorType(error);
         setResponse(returnMessage);
       },

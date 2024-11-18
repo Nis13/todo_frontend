@@ -25,7 +25,6 @@ export const TodosView = ({
         <CircularProgress />
       </Box>
     );
-  console.log(data);
   if (data.length == 0) return <NoTask />;
 
   if (isError && error instanceof Error) return <Box>{error.message}</Box>;

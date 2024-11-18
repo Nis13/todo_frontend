@@ -25,9 +25,8 @@ describe("Given: Add Todo Api", () => {
       mockedPost.mockRejectedValueOnce(new Error(errorResponseDemo));
 
       await expect(useAddTodoApi(todoAddDemoData)).rejects.toThrow(
-        "Error Occured"
+        errorResponseDemo
       );
-
       expect(mockedPost).toHaveBeenCalledWith("todo", todoAddDemoData);
     });
   });
