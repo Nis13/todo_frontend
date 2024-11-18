@@ -19,7 +19,7 @@ export type TodosViewProps = {
   isLoading: boolean;
   memoizedData: ToDo[];
   isError: boolean;
-  error: unknown;
+  error: Error;
   columns: Column[];
   activeTab: TodoStatus;
   filteredTodos: ToDo[];

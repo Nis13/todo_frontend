@@ -5,6 +5,7 @@ import Select from "react-select";
 import { updateSchema } from "./update.schema";
 import { UpdateViewProps } from "./update.types";
 import EditIcon from "@mui/icons-material/Edit";
+import Loading from "../../../components/Loading";
 
 const style = {
   position: "absolute",
@@ -89,6 +90,7 @@ const UpdateView = ({
                       name="title"
                       value={values.title}
                       onChange={handleChange}
+                      disabled={isLoading}
                     />
                     {typeof errors.title === "string" && touched.title ? (
                       <WarningText message={errors.title} />
@@ -99,6 +101,7 @@ const UpdateView = ({
                       defaultValue={statusOptions.find(
                         (option) => option.value === data.status
                       )}
+                      isDisabled={isLoading}
                       isSearchable={false}
                       onChange={(option) =>
                         setFieldValue("status", option?.value)
@@ -114,7 +117,9 @@ const UpdateView = ({
                         Update Task
                       </Button>
                     </Box>
-                    <Box>{response}</Box>
+
+                    <WarningText message={response} />
+                    {isLoading ? <Loading height="1rem" /> : null}
                   </Box>
                 </Form>
               );

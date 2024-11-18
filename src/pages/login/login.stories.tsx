@@ -25,9 +25,3 @@ LoginErrorResponse.args = {
   ...Default.args,
   response: "Error: Invalid credentials",
 };
-
-export const LoginSuccessResponse = Template.bind({});
-LoginSuccessResponse.args = {
-  ...Default.args,
-  response: "User Successfully logged in!",
-};
