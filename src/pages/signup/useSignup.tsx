@@ -9,21 +9,18 @@ export const useSignup = () => {
   const [errorResponse, setErrorResponse] = useState<string | null>(null);
   const queryClient = useQueryClient();
   const navigate = useNavigate();
-  const { isLoading, isSuccess, isError, mutateAsync, error } = useMutation(
-    useSignupApi,
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries("user");
-        navigate("/login");
-      },
-      onError: (error: Error) => {
-        const returnMessage = checkErrorType(error);
-        setErrorResponse(returnMessage);
-      },
-    }
-  );
+  const { isLoading, mutateAsync } = useMutation(useSignupApi, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("user");
+      navigate("/login");
+    },
+    onError: (error: Error) => {
+      const returnMessage = checkErrorType(error);
+      setErrorResponse(returnMessage);
+    },
+  });
 
   const handleSignup = (signupData: SignupFields) => mutateAsync(signupData);
 
-  return { errorResponse, isLoading, isSuccess, isError, error, handleSignup };
+  return { errorResponse, isLoading, handleSignup };
 };

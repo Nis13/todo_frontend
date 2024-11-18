@@ -12,26 +12,21 @@ export const useAdd = () => {
   const handleOpen = () => setOpenModal(true);
   const handleClose = () => setOpenModal(false);
 
-  const { isLoading, isSuccess, data, isError, error, mutateAsync } =
-    useMutation(useAddTodoApi, {
-      onSuccess: () => {
-        queryClient.invalidateQueries("todo");
-        handleClose();
-      },
-      onError: (error: Error) => {
-        const errorMessage = checkErrorType(error);
-        setErrorResponse(errorMessage);
-      },
-    });
+  const { isLoading, mutateAsync } = useMutation(useAddTodoApi, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("todo");
+      handleClose();
+    },
+    onError: (error: Error) => {
+      const errorMessage = checkErrorType(error);
+      setErrorResponse(errorMessage);
+    },
+  });
 
   const handleAddTask = (taskToAdd: AddTodoType) => mutateAsync(taskToAdd);
   return {
     errorResponse,
     isLoading,
-    isSuccess,
-    data,
-    isError,
-    error,
     handleAddTask,
     handleOpen,
     handleClose,

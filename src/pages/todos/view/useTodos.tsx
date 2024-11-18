@@ -45,7 +45,6 @@ export const useTodos = () => {
 
   return {
     isLoading,
-    memoizedData,
     isError,
     error,
     columns,

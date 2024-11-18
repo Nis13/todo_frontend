@@ -25,11 +25,11 @@ const statusOptions = [
 ];
 
 const UpdateView = ({
+  data,
   handleSubmit,
   openModal,
   handleOpen,
   handleClose,
-  data,
   errorResponse,
   isLoading,
 }: UpdateViewProps) => {

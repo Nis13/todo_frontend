@@ -12,19 +12,16 @@ export const useUpdate = () => {
   const handleOpen = () => setOpenModal(true);
   const handleClose = () => setOpenModal(false);
 
-  const { isLoading, isError, error, mutateAsync } = useMutation(
-    useUpdateTodoApi,
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries("todo");
-        handleClose();
-      },
-      onError: (error: Error) => {
-        const message = checkErrorType(error);
-        setErrorResponse(message);
-      },
-    }
-  );
+  const { isLoading, mutateAsync } = useMutation(useUpdateTodoApi, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("todo");
+      handleClose();
+    },
+    onError: (error: Error) => {
+      const message = checkErrorType(error);
+      setErrorResponse(message);
+    },
+  });
 
   const handleSubmit = (values: UpdateTodoApiProps) => mutateAsync(values);
   return {
@@ -32,8 +29,6 @@ export const useUpdate = () => {
     openModal,
     handleClose,
     handleOpen,
-    isError,
-    error,
     handleSubmit,
     errorResponse,
   };
