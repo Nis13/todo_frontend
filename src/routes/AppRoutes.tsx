@@ -1,9 +1,9 @@
 import { Route, Routes } from "react-router-dom";
-import ProtectedRoute from "./ProtectedRoutes";
+import ProtectedRoute from "../layout/ProtectedRoutes";
 import { allRoutes } from "./Routes";
 import Layout from "../layout/Layout";
 import Notfound from "../pages/notFound/NotFound";
-import PublicRoutes from "./PublicRoutes";
+import PublicRoutes from "../layout/PublicRoutes";
 
 const AppRoutes = () => {
   return (
