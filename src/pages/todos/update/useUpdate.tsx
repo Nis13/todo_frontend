@@ -7,24 +7,21 @@ import { UpdateTodoApiProps } from "./update.types";
 export const useUpdate = () => {
   const [openModal, setOpenModal] = useState(false);
   const queryClient = useQueryClient();
-  const [response, setResponse] = useState("");
+  const [errorResponse, setErrorResponse] = useState("");
 
   const handleOpen = () => setOpenModal(true);
   const handleClose = () => setOpenModal(false);
 
-  const { isLoading, isError, error, mutateAsync } = useMutation(
-    useUpdateTodoApi,
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries("todo");
-        handleClose();
-      },
-      onError: (error: Error) => {
-        const message = checkErrorType(error);
-        setResponse(message);
-      },
-    }
-  );
+  const { isLoading, mutateAsync } = useMutation(useUpdateTodoApi, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("todo");
+      handleClose();
+    },
+    onError: (error: Error) => {
+      const message = checkErrorType(error);
+      setErrorResponse(message);
+    },
+  });
 
   const handleSubmit = (values: UpdateTodoApiProps) => mutateAsync(values);
   return {
@@ -32,9 +29,7 @@ export const useUpdate = () => {
     openModal,
     handleClose,
     handleOpen,
-    isError,
-    error,
     handleSubmit,
-    response,
+    errorResponse,
   };
 };

@@ -2,6 +2,8 @@ import { Box, Button, Container, Modal, Typography } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { ImCheckmark, ImCross } from "react-icons/im";
 import { DeleteViewProps } from "./delete.types";
+import WarningText from "../../../components/WarningText";
+import Loading from "../../../components/Loading";
 
 const style = {
   position: "absolute",
@@ -21,6 +23,8 @@ const DeleteView = ({
   openModal,
   handleOpen,
   handleClose,
+  isLoading,
+  errorResponse,
 }: DeleteViewProps) => {
   return (
     <Container>
@@ -45,14 +49,26 @@ const DeleteView = ({
           </Typography>
           <Box>
             <Box display={"flex"} justifyContent={"center"} gap={"2rem"}>
-              <Button variant="outlined" onClick={() => handleDelete(rowId)}>
+              <Button
+                variant="outlined"
+                onClick={() => handleDelete(rowId)}
+                disabled={isLoading}
+              >
                 <ImCheckmark />
                 Yes
               </Button>
-              <Button variant="outlined" onClick={handleClose}>
+              <Button
+                variant="outlined"
+                onClick={handleClose}
+                disabled={isLoading}
+              >
                 <ImCross />
                 No
               </Button>
+            </Box>
+            <Box marginTop={"1rem"}>
+              <WarningText message={errorResponse} />
+              {isLoading ? <Loading height="1rem" /> : null}
             </Box>
           </Box>
         </Box>

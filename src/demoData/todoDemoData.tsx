@@ -4,14 +4,14 @@ export const todoDemoData = [
   {
     id: "1",
     title: "Clean Room",
-    status: "pending",
-    date: Date.now().toString(),
+    status: TodoStatusEnum.PENDING,
+    date: "2024-11-14 09:50:18.770403",
   },
   {
     id: "2",
     title: "Read Book",
-    status: "completed",
-    date: Date.now().toString(),
+    status: TodoStatusEnum.COMPLETED,
+    date: "2024-11-14 09:49:04.399099",
   },
 ];
 

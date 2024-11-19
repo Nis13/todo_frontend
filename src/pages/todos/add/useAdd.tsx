@@ -6,33 +6,27 @@ import { AddTodoType } from "./add.types";
 
 export const useAdd = () => {
   const [openModal, setOpenModal] = useState(false);
-  const [response, setResponse] = useState<string | null>(null);
+  const [errorResponse, setErrorResponse] = useState<string | null>(null);
   const queryClient = useQueryClient();
 
   const handleOpen = () => setOpenModal(true);
   const handleClose = () => setOpenModal(false);
 
-  const { isLoading, isSuccess, data, isError, error, mutateAsync } =
-    useMutation(useAddTodoApi, {
-      onSuccess: () => {
-        queryClient.invalidateQueries("todo");
-        handleClose();
-      },
-      onError: (error: Error) => {
-        console.log("error is being handled", error.message);
-        const returnMessage = checkErrorType(error);
-        setResponse(returnMessage);
-      },
-    });
+  const { isLoading, mutateAsync } = useMutation(useAddTodoApi, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("todo");
+      handleClose();
+    },
+    onError: (error: Error) => {
+      const errorMessage = checkErrorType(error);
+      setErrorResponse(errorMessage);
+    },
+  });
 
   const handleAddTask = (taskToAdd: AddTodoType) => mutateAsync(taskToAdd);
   return {
-    response,
+    errorResponse,
     isLoading,
-    isSuccess,
-    data,
-    isError,
-    error,
     handleAddTask,
     handleOpen,
     handleClose,

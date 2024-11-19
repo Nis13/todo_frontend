@@ -5,6 +5,6 @@ export type LoginCredentials = {
 
 export type LoginViewProps = {
   handleLogin: (value: LoginCredentials) => void;
-  response: string | null;
+  errorResponse: string | null;
   isLoading: boolean;
 };

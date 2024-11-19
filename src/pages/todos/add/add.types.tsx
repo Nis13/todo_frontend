@@ -7,6 +7,6 @@ export type AddTodoViewProps = {
   handleOpen: () => void;
   handleClose: () => void;
   isLoading: boolean;
-  response: string | null;
+  errorResponse: string | null;
   isError: boolean;
 };

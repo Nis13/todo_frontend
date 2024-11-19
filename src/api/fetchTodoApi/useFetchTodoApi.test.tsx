@@ -19,6 +19,7 @@ describe("Given: Todo Api", () => {
       });
     });
   });
+
   describe("When: useFetchTodoApi is called and error occurs", () => {
     it("Then: should throw error", async () => {
       mockedGet.mockRejectedValueOnce(new Error(errorResponseDemo));

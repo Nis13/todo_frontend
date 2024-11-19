@@ -9,7 +9,7 @@ describe("Given: Login Page", () => {
       render(
         <LoginView
           isLoading={false}
-          response=""
+          errorResponse=""
           handleLogin={mockHandleLogin}
         />
       );
@@ -22,7 +22,11 @@ describe("Given: Login Page", () => {
   describe("When: Form is submitted and Loading is True", () => {
     it("Then: should display the Loading icon and disable the login button", () => {
       render(
-        <LoginView isLoading={true} response="" handleLogin={mockHandleLogin} />
+        <LoginView
+          isLoading={true}
+          errorResponse=""
+          handleLogin={mockHandleLogin}
+        />
       );
 
       const loginButton = screen.getByRole("button", { name: /login/i });

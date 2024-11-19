@@ -1,22 +1,20 @@
-import {
-  Box,
-  Button,
-  Container,
-  Paper,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Container, Paper, Typography } from "@mui/material";
 import { Form, Formik } from "formik";
 import { signupSchema } from "./signup.schema";
 import { SignupViewProps } from "./signup.types";
 import WarningText from "../../components/WarningText";
 import CustomSelect from "../../components/Select";
+import TextInput from "../../components/TextInput";
 const options = [
   { value: "user", label: "User" },
   { value: "admin", label: "Admin" },
 ];
 
-const SignupView = ({ response, isLoading, handleSignup }: SignupViewProps) => {
+const SignupView = ({
+  errorResponse,
+  isLoading,
+  handleSignup,
+}: SignupViewProps) => {
   return (
     <Container
       sx={{
@@ -73,55 +71,37 @@ const SignupView = ({ response, isLoading, handleSignup }: SignupViewProps) => {
                     gap: "2rem",
                   }}
                 >
-                  <TextField
+                  <TextInput
                     label="name"
                     type="text"
                     name="name"
                     value={values.name}
                     onChange={handleChange}
-                    sx={{
-                      "& .MuiOutlinedInput-root": {
-                        "&:hover fieldset": {
-                          borderColor: "primary.main",
-                        },
-                      },
-                    }}
+                    isDisabled={isLoading}
                   />
                   {errors.name && touched.name ? (
                     <WarningText message={errors.name} />
                   ) : null}
 
-                  <TextField
+                  <TextInput
                     label="email"
                     type="email"
                     name="email"
                     value={values.email}
                     onChange={handleChange}
-                    sx={{
-                      "& .MuiOutlinedInput-root": {
-                        "&:hover fieldset": {
-                          borderColor: "primary.main",
-                        },
-                      },
-                    }}
+                    isDisabled={isLoading}
                   />
                   {errors.email && touched.email ? (
                     <WarningText message={errors.email} />
                   ) : null}
 
-                  <TextField
+                  <TextInput
                     label="password"
                     type="password"
                     name="password"
                     value={values.password}
                     onChange={handleChange}
-                    sx={{
-                      "& .MuiOutlinedInput-root": {
-                        "&:hover fieldset": {
-                          borderColor: "primary.main",
-                        },
-                      },
-                    }}
+                    isDisabled={isLoading}
                   />
                   {errors.password && touched.password ? (
                     <WarningText message={errors.password} />
@@ -135,13 +115,6 @@ const SignupView = ({ response, isLoading, handleSignup }: SignupViewProps) => {
                       setFieldValue("role", option?.value)
                     }
                   />
-                  {/* <Select
-                    options={options}
-                    name="role"
-                    defaultValue={options[0]}
-                    isSearchable={false}
-                    onChange={(option) => setFieldValue("role", option?.value)}
-                  /> */}
                   {errors.role && touched.role ? (
                     <WarningText message={errors.role} />
                   ) : null}
@@ -160,7 +133,7 @@ const SignupView = ({ response, isLoading, handleSignup }: SignupViewProps) => {
             );
           }}
         </Formik>
-        <WarningText message={isLoading ? "Loading...." : response} />
+        <WarningText message={isLoading ? "Loading...." : errorResponse} />
       </Paper>
     </Container>
   );

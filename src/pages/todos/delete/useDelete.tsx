@@ -5,22 +5,19 @@ import checkErrorType from "../../../utils/checkErrorType";
 
 const useDelete = () => {
   const [openModal, setOpenModal] = useState(false);
-  const [response, setResponse] = useState("");
+  const [errorResponse, setErrorResponse] = useState("");
 
   const queryClient = useQueryClient();
-  const { mutateAsync, isLoading, error, isError } = useMutation(
-    useDeleteTodoApi,
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries("todo");
-        handleClose();
-      },
-      onError: (error: Error) => {
-        const message = checkErrorType(error);
-        setResponse(message);
-      },
-    }
-  );
+  const { mutateAsync, isLoading } = useMutation(useDeleteTodoApi, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("todo");
+      handleClose();
+    },
+    onError: (error: Error) => {
+      const message = checkErrorType(error);
+      setErrorResponse(message);
+    },
+  });
 
   const handleOpen = () => setOpenModal(true);
   const handleClose = () => setOpenModal(false);
@@ -29,12 +26,10 @@ const useDelete = () => {
   return {
     isLoading,
     handleDelete,
-    error,
     openModal,
     handleClose,
     handleOpen,
-    isError,
-    response,
+    errorResponse,
   };
 };
 

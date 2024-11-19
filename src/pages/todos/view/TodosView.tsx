@@ -3,6 +3,7 @@ import { TodosViewProps } from "./todos.types";
 import ReactTable from "../../../components/Table";
 import CircularProgress from "@mui/material/CircularProgress";
 import NoTask from "../../../components/NoTask";
+import ErrorPage from "../../../components/ErrorPage";
 
 export const TodosView = ({
   isLoading,
@@ -25,10 +26,14 @@ export const TodosView = ({
         <CircularProgress />
       </Box>
     );
-  console.log(data);
-  if (data.length == 0) return <NoTask />;
 
-  if (isError && error instanceof Error) return <Box>{error.message}</Box>;
+  if (isError && error instanceof Error)
+    return (
+      <Box>
+        <ErrorPage {...error} />
+      </Box>
+    );
+  if (data.length == 0) return <NoTask />;
 
   return (
     <>

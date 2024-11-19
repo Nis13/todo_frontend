@@ -1,10 +1,12 @@
-import { Box, Button, Modal, TextField, Typography } from "@mui/material";
+import { Box, Button, Modal, Typography } from "@mui/material";
 import { Form, Formik } from "formik";
 import WarningText from "../../../components/WarningText";
-import Select from "react-select";
 import { updateSchema } from "./update.schema";
 import { UpdateViewProps } from "./update.types";
 import EditIcon from "@mui/icons-material/Edit";
+import Loading from "../../../components/Loading";
+import TextInput from "../../../components/TextInput";
+import CustomSelect from "../../../components/Select";
 
 const style = {
   position: "absolute",
@@ -24,12 +26,12 @@ const statusOptions = [
 ];
 
 const UpdateView = ({
+  data,
   handleSubmit,
   openModal,
   handleOpen,
   handleClose,
-  data,
-  response,
+  errorResponse,
   isLoading,
 }: UpdateViewProps) => {
   return (
@@ -54,13 +56,12 @@ const UpdateView = ({
           </Typography>
           <Formik
             initialValues={{
-              id: data.id,
-              title: data.title,
+              title: data.title!,
               status: data.status,
             }}
             validationSchema={updateSchema}
             onSubmit={async (values) => {
-              handleSubmit(values);
+              handleSubmit({ id: data.id, ...values });
             }}
           >
             {(props) => {
@@ -83,26 +84,29 @@ const UpdateView = ({
                       gap: "2rem",
                     }}
                   >
-                    <TextField
+                    <TextInput
                       label="title"
                       type="title"
                       name="title"
                       value={values.title}
                       onChange={handleChange}
+                      isDisabled={isLoading}
                     />
                     {typeof errors.title === "string" && touched.title ? (
                       <WarningText message={errors.title} />
                     ) : null}
-                    <Select
+                    <CustomSelect
                       options={statusOptions}
-                      name="status"
-                      defaultValue={statusOptions.find(
-                        (option) => option.value === data.status
-                      )}
-                      isSearchable={false}
-                      onChange={(option) =>
+                      name={"role"}
+                      defaultValue={
+                        statusOptions.find(
+                          (option) => option.value === data.status
+                        )!
+                      }
+                      onChangeHandler={(option) =>
                         setFieldValue("status", option?.value)
                       }
+                      isDisabled={isLoading}
                     />
                     <Box alignSelf={"center"}>
                       <Button
@@ -114,7 +118,9 @@ const UpdateView = ({
                         Update Task
                       </Button>
                     </Box>
-                    <Box>{response}</Box>
+
+                    <WarningText message={errorResponse} />
+                    {isLoading ? <Loading height="1rem" /> : null}
                   </Box>
                 </Form>
               );

@@ -6,7 +6,7 @@ export type SignupFields = {
 };
 
 export type SignupViewProps = {
-  response: string | null;
+  errorResponse: string | null;
   isLoading: boolean;
   isError: boolean;
   handleSignup: (value: SignupFields) => void;

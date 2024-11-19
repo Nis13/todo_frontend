@@ -13,17 +13,16 @@ describe("Given: Update Todo Api", () => {
       mockedPut.mockResolvedValue(200);
 
       const { result } = renderHook(() =>
-        useUpdateTodoApi({ id: "1", title: "Test Todo" })
+        useUpdateTodoApi({ id: "1", ...todoUpdateDemoData })
       );
 
-      expect(mockedPut).toHaveBeenCalledWith("todo/1", {
-        title: "Test Todo",
-      });
+      expect(mockedPut).toHaveBeenCalledWith("todo/1", todoUpdateDemoData);
       waitFor(() => {
         expect(result.current).toEqual(200);
       });
     });
   });
+
   describe("When: useUpdateTodoApi is called and error occurs", () => {
     it("Then: should throw error", async () => {
       mockedPut.mockRejectedValueOnce(new Error(errorResponseDemo));
