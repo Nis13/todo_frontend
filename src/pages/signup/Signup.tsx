@@ -1,5 +1,5 @@
-import { useSignup } from "./useSignup";
-import SignupView from "./SignupView";
+import { useSignup } from './useSignup';
+import SignupView from './SignupView';
 
 const Signup = () => {
   const logic = useSignup();

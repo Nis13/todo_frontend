@@ -1,62 +1,52 @@
-import { Box, Button, Container, Paper, Typography } from "@mui/material";
-import { Form, Formik } from "formik";
-import { LoginViewProps } from "./login.types";
-import WarningText from "../../components/WarningText";
-import { loginSchema } from "./login.schema";
-import Loading from "../../components/Loading";
-import TextInput from "../../components/TextInput";
+import { Box, Button, Container, Paper, Typography } from '@mui/material';
+import { Form, Formik } from 'formik';
+import { LoginViewProps } from './login.types';
+import WarningText from '../../components/WarningText';
+import { loginSchema } from './login.schema';
+import Loading from '../../components/Loading';
+import TextInput from '../../components/TextInput';
 
-export const LoginView: React.FC<LoginViewProps> = ({
-  isLoading,
-  handleLogin,
-  errorResponse,
-}) => {
+export const LoginView: React.FC<LoginViewProps> = ({ isLoading, handleLogin, errorResponse }) => {
   return (
     <Container
       sx={{
-        height: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
+        height: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
       }}
     >
       <Paper
         elevation={5}
         sx={{
-          padding: "2rem",
-          width: "30rem",
+          padding: '2rem',
+          width: '30rem'
         }}
       >
-        <Typography
-          variant="h3"
-          textAlign={"center"}
-          sx={{ padding: "1rem" }}
-          color="primary"
-        >
+        <Typography variant="h3" textAlign={'center'} sx={{ padding: '1rem' }} color="primary">
           Login
         </Typography>
         <Formik
           initialValues={{
-            email: "",
-            password: "",
+            email: '',
+            password: ''
           }}
           validationSchema={loginSchema}
-          onSubmit={async (values) => {
+          onSubmit={async values => {
             handleLogin(values);
           }}
         >
-          {(props) => {
-            const { values, handleChange, errors, touched, isSubmitting } =
-              props;
+          {props => {
+            const { values, handleChange, errors, touched, isSubmitting } = props;
             return (
               <Form>
                 <Box
                   sx={{
-                    width: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                    gap: "2rem",
+                    width: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    gap: '2rem'
                   }}
                 >
                   <TextInput
@@ -67,9 +57,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
                     onChange={handleChange}
                     isDisabled={isLoading}
                   />
-                  {errors.email && touched.email ? (
-                    <WarningText message={errors.email} />
-                  ) : null}
+                  {errors.email && touched.email ? <WarningText message={errors.email} /> : null}
 
                   <TextInput
                     label="password"
@@ -82,11 +70,11 @@ export const LoginView: React.FC<LoginViewProps> = ({
                   {errors.password && touched.password ? (
                     <WarningText message={errors.password} />
                   ) : null}
-                  <Box alignSelf={"center"}>
+                  <Box alignSelf={'center'}>
                     <Button
                       variant="contained"
                       type="submit"
-                      sx={{ backgroundColor: "primary.main" }}
+                      sx={{ backgroundColor: 'primary.main' }}
                       disabled={isLoading || isSubmitting}
                     >
                       Login

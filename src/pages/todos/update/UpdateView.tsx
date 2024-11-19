@@ -1,28 +1,28 @@
-import { Box, Button, Modal, Typography } from "@mui/material";
-import { Form, Formik } from "formik";
-import WarningText from "../../../components/WarningText";
-import { updateSchema } from "./update.schema";
-import { UpdateViewProps } from "./update.types";
-import EditIcon from "@mui/icons-material/Edit";
-import Loading from "../../../components/Loading";
-import TextInput from "../../../components/TextInput";
-import CustomSelect from "../../../components/Select";
+import { Box, Button, Modal, Typography } from '@mui/material';
+import { Form, Formik } from 'formik';
+import WarningText from '../../../components/WarningText';
+import { updateSchema } from './update.schema';
+import { UpdateViewProps } from './update.types';
+import EditIcon from '@mui/icons-material/Edit';
+import Loading from '../../../components/Loading';
+import TextInput from '../../../components/TextInput';
+import CustomSelect from '../../../components/Select';
 
 const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
   width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
   boxShadow: 24,
-  p: 4,
+  p: 4
 };
 
 const statusOptions = [
-  { value: "pending", label: "Pending" },
-  { value: "completed", label: "Completed" },
+  { value: 'pending', label: 'Pending' },
+  { value: 'completed', label: 'Completed' }
 ];
 
 const UpdateView = ({
@@ -32,7 +32,7 @@ const UpdateView = ({
   handleOpen,
   handleClose,
   errorResponse,
-  isLoading,
+  isLoading
 }: UpdateViewProps) => {
   return (
     <div>
@@ -48,8 +48,8 @@ const UpdateView = ({
         <Box sx={style}>
           <Typography
             variant="h3"
-            textAlign={"center"}
-            sx={{ padding: "1rem" }}
+            textAlign={'center'}
+            sx={{ padding: '1rem' }}
             color="primary.main"
           >
             Update Task
@@ -57,31 +57,24 @@ const UpdateView = ({
           <Formik
             initialValues={{
               title: data.title!,
-              status: data.status,
+              status: data.status
             }}
             validationSchema={updateSchema}
-            onSubmit={async (values) => {
+            onSubmit={async values => {
               handleSubmit({ id: data.id, ...values });
             }}
           >
-            {(props) => {
-              const {
-                values,
-                handleChange,
-                errors,
-                touched,
-                isSubmitting,
-                setFieldValue,
-              } = props;
+            {props => {
+              const { values, handleChange, errors, touched, isSubmitting, setFieldValue } = props;
               return (
                 <Form>
                   <Box
                     sx={{
-                      width: "100%",
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "center",
-                      gap: "2rem",
+                      width: '100%',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'center',
+                      gap: '2rem'
                     }}
                   >
                     <TextInput
@@ -92,27 +85,21 @@ const UpdateView = ({
                       onChange={handleChange}
                       isDisabled={isLoading}
                     />
-                    {typeof errors.title === "string" && touched.title ? (
+                    {typeof errors.title === 'string' && touched.title ? (
                       <WarningText message={errors.title} />
                     ) : null}
                     <CustomSelect
                       options={statusOptions}
-                      name={"role"}
-                      defaultValue={
-                        statusOptions.find(
-                          (option) => option.value === data.status
-                        )!
-                      }
-                      onChangeHandler={(option) =>
-                        setFieldValue("status", option?.value)
-                      }
+                      name={'role'}
+                      defaultValue={statusOptions.find(option => option.value === data.status)!}
+                      onChangeHandler={option => setFieldValue('status', option?.value)}
                       isDisabled={isLoading}
                     />
-                    <Box alignSelf={"center"}>
+                    <Box alignSelf={'center'}>
                       <Button
                         variant="contained"
                         type="submit"
-                        sx={{ backgroundColor: "primary.main" }}
+                        sx={{ backgroundColor: 'primary.main' }}
                         disabled={isLoading || isSubmitting}
                       >
                         Update Task

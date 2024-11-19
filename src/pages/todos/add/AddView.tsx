@@ -1,22 +1,22 @@
-import { Box, Button, Container, Modal, Typography } from "@mui/material";
-import { Form, Formik } from "formik";
-import WarningText from "../../../components/WarningText";
-import { AddTodoViewProps } from "./add.types";
-import { addSchema } from "./add.schema";
-import Loading from "../../../components/Loading";
-import { IoMdAdd } from "react-icons/io";
-import TextInput from "../../../components/TextInput";
+import { Box, Button, Container, Modal, Typography } from '@mui/material';
+import { Form, Formik } from 'formik';
+import WarningText from '../../../components/WarningText';
+import { AddTodoViewProps } from './add.types';
+import { addSchema } from './add.schema';
+import Loading from '../../../components/Loading';
+import { IoMdAdd } from 'react-icons/io';
+import TextInput from '../../../components/TextInput';
 
 const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
   width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
   boxShadow: 24,
-  p: 4,
+  p: 4
 };
 
 const AddView = ({
@@ -25,12 +25,10 @@ const AddView = ({
   handleOpen,
   handleClose,
   isLoading,
-  errorResponse,
+  errorResponse
 }: AddTodoViewProps) => {
   return (
-    <Container
-      sx={{ display: "flex", justifyContent: "flex-end", margin: "1rem 0" }}
-    >
+    <Container sx={{ display: 'flex', justifyContent: 'flex-end', margin: '1rem 0' }}>
       <Box>
         <Button variant="contained" onClick={handleOpen} size="large">
           <IoMdAdd />
@@ -46,33 +44,32 @@ const AddView = ({
         <Box sx={style}>
           <Typography
             variant="h3"
-            textAlign={"center"}
-            sx={{ padding: "1rem" }}
+            textAlign={'center'}
+            sx={{ padding: '1rem' }}
             color="primary.main"
           >
             Add Task
           </Typography>
           <Formik
             initialValues={{
-              title: "",
+              title: ''
             }}
             validationSchema={addSchema}
-            onSubmit={async (values) => {
+            onSubmit={async values => {
               handleAddTask(values);
             }}
           >
-            {(props) => {
-              const { values, handleChange, errors, touched, isSubmitting } =
-                props;
+            {props => {
+              const { values, handleChange, errors, touched, isSubmitting } = props;
               return (
                 <Form>
                   <Box
                     sx={{
-                      width: "100%",
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "center",
-                      gap: "2rem",
+                      width: '100%',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'center',
+                      gap: '2rem'
                     }}
                   >
                     <TextInput
@@ -83,14 +80,12 @@ const AddView = ({
                       isDisabled={isLoading}
                       onChange={handleChange}
                     />
-                    {errors.title && touched.title ? (
-                      <WarningText message={errors.title} />
-                    ) : null}
-                    <Box alignSelf={"center"}>
+                    {errors.title && touched.title ? <WarningText message={errors.title} /> : null}
+                    <Box alignSelf={'center'}>
                       <Button
                         variant="contained"
                         type="submit"
-                        sx={{ backgroundColor: "primary.main" }}
+                        sx={{ backgroundColor: 'primary.main' }}
                         disabled={isLoading || isSubmitting}
                       >
                         Add Task

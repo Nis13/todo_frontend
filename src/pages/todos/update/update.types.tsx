@@ -1,6 +1,6 @@
 export enum TodoStatusEnum {
-  PENDING = "pending",
-  COMPLETED = "completed",
+  PENDING = 'pending',
+  COMPLETED = 'completed'
 }
 
 export type UpdateTodoType = {

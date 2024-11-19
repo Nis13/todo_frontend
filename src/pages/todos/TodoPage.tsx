@@ -1,5 +1,5 @@
-import AddTodo from "./add/Add";
-import Todos from "./view/Todos";
+import AddTodo from './add/Add';
+import Todos from './view/Todos';
 
 const TodoPage = () => {
   return (

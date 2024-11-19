@@ -1,5 +1,5 @@
-import { useTodos } from "./useTodos";
-import { TodosView } from "./TodosView";
+import { useTodos } from './useTodos';
+import { TodosView } from './TodosView';
 
 const Todos = () => {
   const logic = useTodos();

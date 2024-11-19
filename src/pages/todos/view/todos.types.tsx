@@ -1,5 +1,5 @@
-import { Column } from "react-table";
-import { TodoStatusEnum } from "../update/update.types";
+import { Column } from 'react-table';
+import { TodoStatusEnum } from '../update/update.types';
 
 export type ToDo = {
   id: string;
@@ -13,7 +13,7 @@ export type Columns = {
   accessor: string;
 };
 
-export type TodoStatus = "all" | "pending" | "completed";
+export type TodoStatus = 'all' | 'pending' | 'completed';
 
 export type TodosViewProps = {
   isLoading: boolean;

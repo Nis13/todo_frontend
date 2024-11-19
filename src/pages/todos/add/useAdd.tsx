@@ -1,8 +1,8 @@
-import { useMutation, useQueryClient } from "react-query";
-import useAddTodoApi from "../../../api/addTodoApi/useAddTodoApi";
-import { useState } from "react";
-import checkErrorType from "../../../utils/checkErrorType";
-import { AddTodoType } from "./add.types";
+import { useMutation, useQueryClient } from 'react-query';
+import useAddTodoApi from '../../../api/addTodoApi/useAddTodoApi';
+import { useState } from 'react';
+import checkErrorType from '../../../utils/checkErrorType';
+import { AddTodoType } from './add.types';
 
 export const useAdd = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -14,13 +14,13 @@ export const useAdd = () => {
 
   const { isLoading, mutateAsync } = useMutation(useAddTodoApi, {
     onSuccess: () => {
-      queryClient.invalidateQueries("todo");
+      queryClient.invalidateQueries('todo');
       handleClose();
     },
     onError: (error: Error) => {
       const errorMessage = checkErrorType(error);
       setErrorResponse(errorMessage);
-    },
+    }
   });
 
   const handleAddTask = (taskToAdd: AddTodoType) => mutateAsync(taskToAdd);
@@ -30,6 +30,6 @@ export const useAdd = () => {
     handleAddTask,
     handleOpen,
     handleClose,
-    openModal,
+    openModal
   };
 };

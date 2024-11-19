@@ -1,5 +1,5 @@
-import { TextField } from "@mui/material";
-import React from "react";
+import { TextField } from '@mui/material';
+import React from 'react';
 
 interface TextInputProps {
   value: string | number;
@@ -10,14 +10,7 @@ interface TextInputProps {
   name: string;
 }
 
-const TextInput = ({
-  value,
-  onChange,
-  isDisabled,
-  label,
-  type,
-  name,
-}: TextInputProps) => {
+const TextInput = ({ value, onChange, isDisabled, label, type, name }: TextInputProps) => {
   return (
     <TextField
       label={label}
@@ -27,11 +20,11 @@ const TextInput = ({
       onChange={onChange}
       disabled={isDisabled}
       sx={{
-        "& .MuiOutlinedInput-root": {
-          "&:hover fieldset": {
-            borderColor: "primary.main",
-          },
-        },
+        '& .MuiOutlinedInput-root': {
+          '&:hover fieldset': {
+            borderColor: 'primary.main'
+          }
+        }
       }}
     />
   );

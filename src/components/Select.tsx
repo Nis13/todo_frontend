@@ -1,5 +1,5 @@
-import { useTheme } from "@mui/material";
-import Select, { SingleValue } from "react-select";
+import { useTheme } from '@mui/material';
+import Select, { SingleValue } from 'react-select';
 interface Options {
   value: string;
   label: string;
@@ -17,33 +17,33 @@ const CustomSelect = ({
   defaultValue,
   onChangeHandler,
   name,
-  isDisabled,
+  isDisabled
 }: SelectProps) => {
   const MuiTheme = useTheme();
   return (
     <Select
       options={options}
       isDisabled={isDisabled}
-      theme={(reactSelecttheme) => ({
+      theme={reactSelecttheme => ({
         ...reactSelecttheme,
         borderRadius: 0,
         colors: {
           ...reactSelecttheme.colors,
           primary25: MuiTheme.palette.primary.light,
           primary: MuiTheme.palette.primary.light,
-          neutral80: MuiTheme.palette.text.primary,
-        },
+          neutral80: MuiTheme.palette.text.primary
+        }
       })}
       styles={{
-        control: (base) => ({
+        control: base => ({
           ...base,
           fontSize: MuiTheme.typography.fontSize,
           fontFamily: MuiTheme.typography.fontFamily,
           color: MuiTheme.palette.text.primary,
           fontWeightLight: MuiTheme.typography.fontWeightLight,
           fontWeightBold: MuiTheme.typography.fontWeightBold,
-          fontWeightMedium: MuiTheme.typography.fontWeightMedium,
-        }),
+          fontWeightMedium: MuiTheme.typography.fontWeightMedium
+        })
       }}
       name={name}
       defaultValue={defaultValue}

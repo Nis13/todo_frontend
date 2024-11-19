@@ -1,5 +1,5 @@
-import { NavBarView } from "./NavbarView";
-import { useNavbar } from "./useNavbar";
+import { NavBarView } from './NavbarView';
+import { useNavbar } from './useNavbar';
 
 const Navbar = () => {
   const logic = useNavbar();

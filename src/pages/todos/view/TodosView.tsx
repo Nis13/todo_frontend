@@ -1,9 +1,9 @@
-import { Box, Tab, Tabs } from "@mui/material";
-import { TodosViewProps } from "./todos.types";
-import ReactTable from "../../../components/Table";
-import CircularProgress from "@mui/material/CircularProgress";
-import NoTask from "../../../components/NoTask";
-import ErrorPage from "../../../components/ErrorPage";
+import { Box, Tab, Tabs } from '@mui/material';
+import { TodosViewProps } from './todos.types';
+import ReactTable from '../../../components/Table';
+import CircularProgress from '@mui/material/CircularProgress';
+import NoTask from '../../../components/NoTask';
+import ErrorPage from '../../../components/ErrorPage';
 
 export const TodosView = ({
   isLoading,
@@ -13,16 +13,11 @@ export const TodosView = ({
   activeTab,
   handleChange,
   filteredTodos,
-  data,
+  data
 }: TodosViewProps) => {
   if (isLoading)
     return (
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        height="100vh"
-      >
+      <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
         <CircularProgress />
       </Box>
     );
@@ -43,13 +38,7 @@ export const TodosView = ({
         <Tab label="Completed" value="completed" />
       </Tabs>
 
-      <Box
-        display={"flex"}
-        flexDirection={"column"}
-        maxWidth={"60%"}
-        margin={"auto"}
-        gap={"2rem"}
-      >
+      <Box display={'flex'} flexDirection={'column'} maxWidth={'60%'} margin={'auto'} gap={'2rem'}>
         {filteredTodos.length == 0 ? (
           <NoTask />
         ) : (

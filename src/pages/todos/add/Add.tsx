@@ -1,5 +1,5 @@
-import AddView from "./AddView";
-import { useAdd } from "./useAdd";
+import AddView from './AddView';
+import { useAdd } from './useAdd';
 
 const Add = () => {
   const logic = useAdd();

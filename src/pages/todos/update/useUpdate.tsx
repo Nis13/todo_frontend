@@ -1,26 +1,26 @@
-import { useState } from "react";
-import { useMutation, useQueryClient } from "react-query";
-import useUpdateTodoApi from "../../../api/updateTodoApi/useUpdateTodoApi";
-import checkErrorType from "../../../utils/checkErrorType";
-import { UpdateTodoApiProps } from "./update.types";
+import { useState } from 'react';
+import { useMutation, useQueryClient } from 'react-query';
+import useUpdateTodoApi from '../../../api/updateTodoApi/useUpdateTodoApi';
+import checkErrorType from '../../../utils/checkErrorType';
+import { UpdateTodoApiProps } from './update.types';
 
 export const useUpdate = () => {
   const [openModal, setOpenModal] = useState(false);
   const queryClient = useQueryClient();
-  const [errorResponse, setErrorResponse] = useState("");
+  const [errorResponse, setErrorResponse] = useState('');
 
   const handleOpen = () => setOpenModal(true);
   const handleClose = () => setOpenModal(false);
 
   const { isLoading, mutateAsync } = useMutation(useUpdateTodoApi, {
     onSuccess: () => {
-      queryClient.invalidateQueries("todo");
+      queryClient.invalidateQueries('todo');
       handleClose();
     },
     onError: (error: Error) => {
       const message = checkErrorType(error);
       setErrorResponse(message);
-    },
+    }
   });
 
   const handleSubmit = (values: UpdateTodoApiProps) => mutateAsync(values);
@@ -30,6 +30,6 @@ export const useUpdate = () => {
     handleClose,
     handleOpen,
     handleSubmit,
-    errorResponse,
+    errorResponse
   };
 };

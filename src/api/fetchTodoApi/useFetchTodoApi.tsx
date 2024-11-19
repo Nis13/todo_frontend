@@ -1,7 +1,7 @@
-import api from "../api";
+import api from '../api';
 
 const useFetchTodoApi = async () => {
-  const response = await api.get("/user/todo");
+  const response = await api.get('/user/todo');
   return response.data;
 };
 

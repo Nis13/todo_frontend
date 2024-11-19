@@ -1,74 +1,58 @@
-import { Box, Button, Container, Paper, Typography } from "@mui/material";
-import { Form, Formik } from "formik";
-import { signupSchema } from "./signup.schema";
-import { SignupViewProps } from "./signup.types";
-import WarningText from "../../components/WarningText";
-import CustomSelect from "../../components/Select";
-import TextInput from "../../components/TextInput";
+import { Box, Button, Container, Paper, Typography } from '@mui/material';
+import { Form, Formik } from 'formik';
+import { signupSchema } from './signup.schema';
+import { SignupViewProps } from './signup.types';
+import WarningText from '../../components/WarningText';
+import CustomSelect from '../../components/Select';
+import TextInput from '../../components/TextInput';
 const options = [
-  { value: "user", label: "User" },
-  { value: "admin", label: "Admin" },
+  { value: 'user', label: 'User' },
+  { value: 'admin', label: 'Admin' }
 ];
 
-const SignupView = ({
-  errorResponse,
-  isLoading,
-  handleSignup,
-}: SignupViewProps) => {
+const SignupView = ({ errorResponse, isLoading, handleSignup }: SignupViewProps) => {
   return (
     <Container
       sx={{
-        height: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
+        height: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
       }}
     >
       <Paper
         elevation={5}
         sx={{
-          padding: "2rem",
-          width: "30rem",
+          padding: '2rem',
+          width: '30rem'
         }}
       >
-        <Typography
-          variant="h3"
-          textAlign={"center"}
-          sx={{ padding: "1rem" }}
-          color="primary.main"
-        >
+        <Typography variant="h3" textAlign={'center'} sx={{ padding: '1rem' }} color="primary.main">
           Signup
         </Typography>
         <Formik
           initialValues={{
-            name: "",
-            password: "",
-            email: "",
-            role: options[0].value,
+            name: '',
+            password: '',
+            email: '',
+            role: options[0].value
           }}
           validationSchema={signupSchema}
-          onSubmit={async (values) => {
+          onSubmit={async values => {
             handleSignup(values);
           }}
         >
-          {(props) => {
-            const {
-              values,
-              handleChange,
-              errors,
-              touched,
-              isSubmitting,
-              setFieldValue,
-            } = props;
+          {props => {
+            const { values, handleChange, errors, touched, isSubmitting, setFieldValue } = props;
             return (
               <Form>
                 <Box
                   sx={{
-                    width: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                    gap: "2rem",
+                    width: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    gap: '2rem'
                   }}
                 >
                   <TextInput
@@ -79,9 +63,7 @@ const SignupView = ({
                     onChange={handleChange}
                     isDisabled={isLoading}
                   />
-                  {errors.name && touched.name ? (
-                    <WarningText message={errors.name} />
-                  ) : null}
+                  {errors.name && touched.name ? <WarningText message={errors.name} /> : null}
 
                   <TextInput
                     label="email"
@@ -91,9 +73,7 @@ const SignupView = ({
                     onChange={handleChange}
                     isDisabled={isLoading}
                   />
-                  {errors.email && touched.email ? (
-                    <WarningText message={errors.email} />
-                  ) : null}
+                  {errors.email && touched.email ? <WarningText message={errors.email} /> : null}
 
                   <TextInput
                     label="password"
@@ -109,20 +89,16 @@ const SignupView = ({
 
                   <CustomSelect
                     options={options}
-                    name={"role"}
+                    name={'role'}
                     defaultValue={options[0]}
-                    onChangeHandler={(option) =>
-                      setFieldValue("role", option?.value)
-                    }
+                    onChangeHandler={option => setFieldValue('role', option?.value)}
                   />
-                  {errors.role && touched.role ? (
-                    <WarningText message={errors.role} />
-                  ) : null}
-                  <Box textAlign={"center"}>
+                  {errors.role && touched.role ? <WarningText message={errors.role} /> : null}
+                  <Box textAlign={'center'}>
                     <Button
                       variant="contained"
                       type="submit"
-                      sx={{ backgroundColor: "primary.main" }}
+                      sx={{ backgroundColor: 'primary.main' }}
                       disabled={isSubmitting || isLoading}
                     >
                       Signup
@@ -133,7 +109,7 @@ const SignupView = ({
             );
           }}
         </Formik>
-        <WarningText message={isLoading ? "Loading...." : errorResponse} />
+        <WarningText message={isLoading ? 'Loading....' : errorResponse} />
       </Paper>
     </Container>
   );
