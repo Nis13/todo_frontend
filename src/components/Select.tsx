@@ -10,17 +10,20 @@ interface SelectProps {
   defaultValue: Options;
   onChangeHandler: (option: SingleValue<Options>) => void;
   name: string;
+  isDisabled?: boolean;
 }
 const CustomSelect = ({
   options,
   defaultValue,
   onChangeHandler,
   name,
+  isDisabled,
 }: SelectProps) => {
   const MuiTheme = useTheme();
   return (
     <Select
       options={options}
+      isDisabled={isDisabled}
       theme={(reactSelecttheme) => ({
         ...reactSelecttheme,
         borderRadius: 0,

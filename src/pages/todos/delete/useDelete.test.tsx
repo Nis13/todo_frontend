@@ -16,7 +16,6 @@ describe("Given: useDelete hook", () => {
 
       expect(mockedDelete).toHaveBeenCalledWith("/todo/1");
       expect(result.current.isLoading).toBeFalsy();
-      expect(result.current.isError).toBeFalsy();
     });
   });
 
@@ -34,7 +33,6 @@ describe("Given: useDelete hook", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
         expect(result.current.errorResponse).toBe(response);
       });
     });

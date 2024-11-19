@@ -4,7 +4,7 @@ import React from "react";
 interface TextInputProps {
   value: string | number;
   onChange: (e: React.ChangeEvent) => void;
-  isLoading?: boolean;
+  isDisabled?: boolean;
   label: string;
   type: React.HTMLInputTypeAttribute;
   name: string;
@@ -13,7 +13,7 @@ interface TextInputProps {
 const TextInput = ({
   value,
   onChange,
-  isLoading,
+  isDisabled,
   label,
   type,
   name,
@@ -25,7 +25,7 @@ const TextInput = ({
       name={name}
       value={value}
       onChange={onChange}
-      disabled={isLoading}
+      disabled={isDisabled}
       sx={{
         "& .MuiOutlinedInput-root": {
           "&:hover fieldset": {

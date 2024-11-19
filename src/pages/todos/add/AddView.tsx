@@ -1,17 +1,11 @@
-import {
-  Box,
-  Button,
-  Container,
-  Modal,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Container, Modal, Typography } from "@mui/material";
 import { Form, Formik } from "formik";
 import WarningText from "../../../components/WarningText";
 import { AddTodoViewProps } from "./add.types";
 import { addSchema } from "./add.schema";
 import Loading from "../../../components/Loading";
 import { IoMdAdd } from "react-icons/io";
+import TextInput from "../../../components/TextInput";
 
 const style = {
   position: "absolute",
@@ -81,12 +75,12 @@ const AddView = ({
                       gap: "2rem",
                     }}
                   >
-                    <TextField
+                    <TextInput
                       label="title"
                       type="title"
                       name="title"
                       value={values.title}
-                      disabled={isLoading}
+                      isDisabled={isLoading}
                       onChange={handleChange}
                     />
                     {errors.title && touched.title ? (

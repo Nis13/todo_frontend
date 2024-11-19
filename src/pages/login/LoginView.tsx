@@ -1,16 +1,10 @@
-import {
-  Box,
-  Button,
-  Container,
-  Paper,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Container, Paper, Typography } from "@mui/material";
 import { Form, Formik } from "formik";
 import { LoginViewProps } from "./login.types";
 import WarningText from "../../components/WarningText";
 import { loginSchema } from "./login.schema";
 import Loading from "../../components/Loading";
+import TextInput from "../../components/TextInput";
 
 export const LoginView: React.FC<LoginViewProps> = ({
   isLoading,
@@ -65,39 +59,25 @@ export const LoginView: React.FC<LoginViewProps> = ({
                     gap: "2rem",
                   }}
                 >
-                  <TextField
+                  <TextInput
                     label="email"
                     type="text"
                     name="email"
                     value={values.email}
                     onChange={handleChange}
-                    disabled={isLoading}
-                    sx={{
-                      "& .MuiOutlinedInput-root": {
-                        "&:hover fieldset": {
-                          borderColor: "primary.main",
-                        },
-                      },
-                    }}
+                    isDisabled={isLoading}
                   />
                   {errors.email && touched.email ? (
                     <WarningText message={errors.email} />
                   ) : null}
 
-                  <TextField
+                  <TextInput
                     label="password"
                     type="password"
                     name="password"
                     value={values.password}
                     onChange={handleChange}
-                    disabled={isLoading}
-                    sx={{
-                      "& .MuiOutlinedInput-root": {
-                        "&:hover fieldset": {
-                          borderColor: "primary.main",
-                        },
-                      },
-                    }}
+                    isDisabled={isLoading}
                   />
                   {errors.password && touched.password ? (
                     <WarningText message={errors.password} />
