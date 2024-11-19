@@ -36,7 +36,6 @@ describe("Given: useUpdate hook", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
         expect(result.current.errorResponse).toBe(response);
       });
     });

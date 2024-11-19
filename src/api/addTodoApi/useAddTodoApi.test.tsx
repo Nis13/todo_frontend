@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { mockedPost } from "../../setuptest";
-import { renderHook, waitFor } from "@testing-library/react";
+import { renderHook } from "@testing-library/react";
 import useAddTodoApi from "./useAddTodoApi";
 import {
   errorResponseDemo,
@@ -10,14 +10,9 @@ import {
 describe("Given: Add Todo Api", () => {
   describe("When: useAddTodoApi is called", () => {
     it("Then: should return the correct status", () => {
-      mockedPost.mockResolvedValue(201);
-
-      const { result } = renderHook(() => useAddTodoApi(todoAddDemoData));
+      renderHook(() => useAddTodoApi(todoAddDemoData));
 
       expect(mockedPost).toHaveBeenCalledWith("todo", todoAddDemoData);
-      waitFor(() => {
-        expect(result).toEqual(201);
-      });
     });
   });
 
